@@ -1,0 +1,17 @@
+{
+  "name": "nextjs-zauth-basic-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@zeushq/nextjs-zauth": "file:../../",
+    "next": "file:../../node_modules/next",
+    "react": "file:../../node_modules/react",
+    "react-dom": "file:../../node_modules/react-dom"
+  }
+}
