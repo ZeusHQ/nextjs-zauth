@@ -20,11 +20,8 @@ export default function loginHandlerFactory(
   getClient: ClientFactory,
   transientHandler: TransientStore
 ): HandleLogin {
-  console.log("loginHandlerFactory");
   return async (req, res, options = {}) => {
-    console.log("loginHandlerFactory async");
     const client = await getClient();
-    console.log("getClient", client)
     const returnTo = options.returnTo || config.baseURL;
 
     const opts = {
@@ -39,8 +36,6 @@ export default function loginHandlerFactory(
       ...config.authorizationParams,
       ...(opts.authorizationParams || {})
     };
-
-    console.log(opts);
 
     const transientOpts: StoreOptions = {
       sameSite: opts.authorizationParams.response_mode === 'form_post' ? 'none' : 'lax'
@@ -59,8 +54,6 @@ export default function loginHandlerFactory(
       stateValue.code_verifier = transientHandler.generateCodeVerifier();
     }
 
-    console.log(stateValue);
-
     const authParams = {
       ...opts.authorizationParams,
       nonce: transientHandler.save('nonce', req, res, transientOpts),
@@ -77,8 +70,6 @@ export default function loginHandlerFactory(
         }
         : undefined)
     };
-
-    console.log(authParams);
 
     const validResponseTypes = ['id_token', 'code id_token', 'code'];
     assert(

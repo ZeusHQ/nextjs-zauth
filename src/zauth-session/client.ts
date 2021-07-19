@@ -24,6 +24,7 @@ function sortSpaceDelimitedString(str: string): string {
 // `_errors` property to identify the polyfilled `AggregateError`
 // See https://github.com/sindresorhus/aggregate-error/issues/4#issuecomment-488356468
 function normalizeAggregateError(e: Error | (Error & { _errors: Error[] })): Error {
+  console.log("normalizeAggregateError", e);
   if ('_errors' in e) {
     return e._errors[0];
   }
@@ -72,7 +73,6 @@ export default function get(config: Config, { name, version }: Telemetry): Clien
     try {
       issuer = await Issuer.discover(config.issuerBaseURL);
     } catch (e) {
-      console.log(e);
       throw normalizeAggregateError(e);
     }
     applyHttpOptionsCustom(issuer);
@@ -109,6 +109,8 @@ export default function get(config: Config, { name, version }: Telemetry): Clien
       );
     }
 
+    console.log("client configRespMode", configRespMode);
+
     client = new issuer.Client({
       client_id: config.clientID,
       client_secret: config.clientSecret,
@@ -117,6 +119,7 @@ export default function get(config: Config, { name, version }: Telemetry): Clien
     applyHttpOptionsCustom(client);
     client[custom.clock_tolerance] = config.clockTolerance;
 
+    console.log("client issuer", issuer)
     if (config.idpLogout && !issuer.end_session_endpoint) {
       if (config.zAuthLogout || (url.parse(issuer.metadata.issuer).hostname as string).match('\\.zeusdev\\.io$')) {
         Object.defineProperty(client, 'endSessionUrl', {

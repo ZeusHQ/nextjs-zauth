@@ -114,7 +114,6 @@ export default function handlerFactory({
         case 'me':
           return profile(req, res);
         default:
-          console.log("RETURN 404")
           res.status(404).end();
       }
     };
