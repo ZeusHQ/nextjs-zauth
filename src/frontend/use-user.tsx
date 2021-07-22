@@ -8,14 +8,14 @@ import ConfigProvider, { ConfigContext } from './use-config';
  * @category Client
  */
 export interface UserProfile {
-    email?: string | null;
-    email_verified?: boolean | null;
-    name?: string | null;
-    nickname?: string | null;
-    picture?: string | null;
-    sub?: string | null;
-    updated_at?: string | null;
-    [key: string]: unknown; // Any custom claim which could be in the profile
+  email?: string | null;
+  email_verified?: boolean | null;
+  name?: string | null;
+  nickname?: string | null;
+  picture?: string | null;
+  sub?: string | null;
+  updated_at?: string | null;
+  [key: string]: unknown; // Any custom claim which could be in the profile
 }
 
 /**
@@ -24,10 +24,10 @@ export interface UserProfile {
  * @category Client
  */
 export type UserContext = {
-    user?: UserProfile;
-    error?: Error;
-    isLoading: boolean;
-    checkSession: () => Promise<void>;
+  user?: UserProfile;
+  error?: Error;
+  isLoading: boolean;
+  checkSession: () => Promise<void>;
 };
 
 /**
@@ -67,7 +67,7 @@ type UserFetcher = (url: string) => Promise<UserProfile | undefined>;
  * @category Client
  */
 export type UserProviderProps = React.PropsWithChildren<
-    { user?: UserProfile; profileUrl?: string; fetcher?: UserFetcher } & ConfigContext
+  { user?: UserProfile; profileUrl?: string; fetcher?: UserFetcher } & ConfigContext
 >;
 
 /**
@@ -79,18 +79,18 @@ const missingUserProvider = 'You forgot to wrap your app in <UserProvider>';
  * @ignore
  */
 export const UserContext = createContext<UserContext>({
-    get user(): never {
-        throw new Error(missingUserProvider);
-    },
-    get error(): never {
-        throw new Error(missingUserProvider);
-    },
-    get isLoading(): never {
-        throw new Error(missingUserProvider);
-    },
-    checkSession: (): never => {
-        throw new Error(missingUserProvider);
-    }
+  get user(): never {
+    throw new Error(missingUserProvider);
+  },
+  get error(): never {
+    throw new Error(missingUserProvider);
+  },
+  get isLoading(): never {
+    throw new Error(missingUserProvider);
+  },
+  checkSession: (): never => {
+    throw new Error(missingUserProvider);
+  }
 });
 
 /**
@@ -132,51 +132,51 @@ export type UserProvider = (props: UserProviderProps) => ReactElement<UserContex
  * @ignore
  */
 type UserProviderState = {
-    user?: UserProfile;
-    error?: Error;
-    isLoading: boolean;
+  user?: UserProfile;
+  error?: Error;
+  isLoading: boolean;
 };
 
 /**
  * @ignore
  */
 const userFetcher: UserFetcher = async (url) => {
-    const response = await fetch(url);
-    return response.ok ? response.json() : undefined;
+  const response = await fetch(url);
+  return response.ok ? response.json() : undefined;
 };
 
 export default ({
-    children,
-    user: initialUser,
-    profileUrl = process.env.NEXT_PUBLIC_ZAUTH_PROFILE || '/api/auth/me',
-    loginUrl,
-    fetcher = userFetcher
+  children,
+  user: initialUser,
+  profileUrl = process.env.NEXT_PUBLIC_ZAUTH_PROFILE || '/api/auth/me',
+  loginUrl,
+  fetcher = userFetcher
 }: UserProviderProps): ReactElement<UserContext> => {
-    const [state, setState] = useState<UserProviderState>({ user: initialUser, isLoading: !initialUser });
+  const [state, setState] = useState<UserProviderState>({ user: initialUser, isLoading: !initialUser });
 
-    const checkSession = useCallback(async (): Promise<void> => {
-        try {
-            const user = await fetcher(profileUrl);
-            setState((previous) => ({ ...previous, user, error: undefined }));
-        } catch (_e) {
-            const error = new Error(`The request to ${profileUrl} failed`);
-            setState((previous) => ({ ...previous, user: undefined, error }));
-        }
-    }, [profileUrl]);
+  const checkSession = useCallback(async (): Promise<void> => {
+    try {
+      const user = await fetcher(profileUrl);
+      setState((previous) => ({ ...previous, user, error: undefined }));
+    } catch (_e) {
+      const error = new Error(`The request to ${profileUrl} failed`);
+      setState((previous) => ({ ...previous, user: undefined, error }));
+    }
+  }, [profileUrl]);
 
-    useEffect((): void => {
-        if (state.user) return;
-        (async (): Promise<void> => {
-            await checkSession();
-            setState((previous) => ({ ...previous, isLoading: false }));
-        })();
-    }, [state.user]);
+  useEffect((): void => {
+    if (state.user) return;
+    (async (): Promise<void> => {
+      await checkSession();
+      setState((previous) => ({ ...previous, isLoading: false }));
+    })();
+  }, [state.user]);
 
-    const { user, error, isLoading } = state;
+  const { user, error, isLoading } = state;
 
-    return (
-        <ConfigProvider loginUrl={loginUrl}>
-            <UserContext.Provider value={{ user, error, isLoading, checkSession }}>{children}</UserContext.Provider>
-        </ConfigProvider>
-    );
+  return (
+    <ConfigProvider loginUrl={loginUrl}>
+      <UserContext.Provider value={{ user, error, isLoading, checkSession }}>{children}</UserContext.Provider>
+    </ConfigProvider>
+  );
 };

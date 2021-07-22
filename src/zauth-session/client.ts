@@ -34,7 +34,6 @@ export default function get(config: Config, { name, version }: Telemetry): Clien
   let client: Client | null = null;
 
   return async (): Promise<Client> => {
-
     if (client) {
       return client;
     }
@@ -46,16 +45,16 @@ export default function get(config: Config, { name, version }: Telemetry): Clien
         'User-Agent': `${name}/${version}`,
         ...(config.enableTelemetry
           ? {
-            'ZAuth-Client': Buffer.from(
-              JSON.stringify({
-                name,
-                version,
-                env: {
-                  node: process.version
-                }
-              })
-            ).toString('base64')
-          }
+              'ZAuth-Client': Buffer.from(
+                JSON.stringify({
+                  name,
+                  version,
+                  env: {
+                    node: process.version
+                  }
+                })
+              ).toString('base64')
+            }
           : undefined)
       },
       timeout: config.httpTimeout
@@ -119,7 +118,6 @@ export default function get(config: Config, { name, version }: Telemetry): Clien
     if (config.idpLogout && !issuer.end_session_endpoint) {
       if (config.zAuthLogout || (url.parse(issuer.metadata.issuer).hostname as string).match('\\.zeusdev\\.io$')) {
         Object.defineProperty(client, 'endSessionUrl', {
-
           value(params: EndSessionParameters) {
             const parsedUrl = url.parse(urlJoin(issuer.metadata.issuer, '/v2/logout'));
             (parsedUrl as UrlObject).query = {

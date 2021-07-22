@@ -48,7 +48,6 @@ export default function callbackHandlerFactory(
         state: expectedState
       });
     } catch (err) {
-      console.log(err);
       throw new BadRequest(err.message);
     }
 

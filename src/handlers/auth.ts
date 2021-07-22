@@ -66,14 +66,14 @@ export type HandleAuth = (userHandlers?: Partial<Handlers>) => NextApiHandler;
  */
 const wrapErrorHandling =
   (fn: NextApiHandler): NextApiHandler =>
-    async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-      try {
-        await fn(req, res);
-      } catch (error) {
-        console.error(error);
-        res.status(error.status || 500).end(error.message);
-      }
-    };
+  async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
+    try {
+      await fn(req, res);
+    } catch (error) {
+      console.error(error);
+      res.status(error.status || 500).end(error.message);
+    }
+  };
 
 /**
  * @ignore

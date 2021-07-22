@@ -1,7 +1,7 @@
 import React, { ReactElement, useContext, createContext } from 'react';
 
 export type ConfigContext = {
-    loginUrl?: string;
+  loginUrl?: string;
 };
 
 const Config = createContext<ConfigContext>({});
@@ -11,8 +11,8 @@ export type UseConfig = () => ConfigContext;
 export const useConfig: UseConfig = () => useContext<ConfigContext>(Config);
 
 export default ({
-    children,
-    loginUrl = process.env.NEXT_PUBLIC_ZAUTH_LOGIN || '/api/auth/login'
+  children,
+  loginUrl = process.env.NEXT_PUBLIC_ZAUTH_LOGIN || '/api/auth/login'
 }: ConfigProviderProps): ReactElement<ConfigContext> => {
-    return <Config.Provider value={{ loginUrl }}>{children}</Config.Provider>;
+  return <Config.Provider value={{ loginUrl }}>{children}</Config.Provider>;
 };

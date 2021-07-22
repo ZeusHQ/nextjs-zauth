@@ -63,11 +63,11 @@ export default function loginHandlerFactory(
       }),
       ...(usePKCE
         ? {
-          code_challenge: transientHandler.calculateCodeChallenge(
-            transientHandler.save('code_verifier', req, res, transientOpts)
-          ),
-          code_challenge_method: 'S256'
-        }
+            code_challenge: transientHandler.calculateCodeChallenge(
+              transientHandler.save('code_verifier', req, res, transientOpts)
+            ),
+            code_challenge_method: 'S256'
+          }
         : undefined)
     };
 
