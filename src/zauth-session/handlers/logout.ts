@@ -47,8 +47,9 @@ export default function logoutHandlerFactory(
     const client = await getClient();
     returnURL = client.endSessionUrl({
       post_logout_redirect_uri: returnURL,
-      id_token_hint: idToken
+      id_token_hint: idToken,
     });
+    returnURL = `${returnURL}&idToken=${idToken}`;
 
     debug('logging out of identity provider, redirecting to %s', returnURL);
     res.writeHead(302, {

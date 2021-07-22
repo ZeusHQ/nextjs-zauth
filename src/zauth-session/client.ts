@@ -119,7 +119,7 @@ export default function get(config: Config, { name, version }: Telemetry): Clien
       if (config.zAuthLogout || (url.parse(issuer.metadata.issuer).hostname as string).match('\\.zeusdev\\.io$')) {
         Object.defineProperty(client, 'endSessionUrl', {
           value(params: EndSessionParameters) {
-            const parsedUrl = url.parse(urlJoin(issuer.metadata.issuer, '/v2/logout'));
+            const parsedUrl = url.parse(urlJoin(issuer.metadata.issuer, '/oauth/logout'));
             (parsedUrl as UrlObject).query = {
               returnTo: params.post_logout_redirect_uri,
               client_id: config.clientID

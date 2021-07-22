@@ -56,7 +56,7 @@ const Header = (): React.ReactElement => {
         header {
           padding: 0.2rem;
           color: #fff;
-          background-color: #333;
+          background-color: #121212;
         }
         nav {
           max-width: 42rem;
