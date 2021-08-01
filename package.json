@@ -9,6 +9,9 @@
     "dist",
     "src"
   ],
+  "engines": {
+    "node": "^10.13.0 || >=12.0.0"
+  },
   "scripts": {
     "clean": "rm -rf ./dist",
     "pretty": "prettier --write \"src/**/*.{ts,tsx}\" \"src/*.ts\"",
@@ -30,6 +33,24 @@
     "test:kitchen-sink": "start-server-and-test start:kitchen-sink http-get://localhost:3000 cypress:run",
     "test:kitchen-sink:watch": "start-server-and-test start:kitchen-sink 3000 cypress:open"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeushq/nextjs-zauth.git"
+  },
+  "keywords": [
+    "zeus",
+    "zauth",
+    "next.js",
+    "react",
+    "oidc",
+    "authentication"
+  ],
+  "author": "Zeus (https://zeusdev.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zeushq/nextjs-zauth/issues"
+  },
+  "homepage": "https://github.com/zeushq/nextjs-zauth#readme",
   "dependencies": {
     "base64url": "^3.0.1",
     "cookie": "^0.4.1",
