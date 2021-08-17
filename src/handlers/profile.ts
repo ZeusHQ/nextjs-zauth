@@ -1,5 +1,5 @@
 import { NextApiResponse, NextApiRequest } from 'next';
-import { ClientFactory } from '../zauth-session';
+import { ClientFactory } from '../zsession';
 import { SessionCache, Session, fromJson, GetAccessToken } from '../session';
 import { assertReqRes } from '../utils/assert';
 import { HandlerError } from '../utils/errors';

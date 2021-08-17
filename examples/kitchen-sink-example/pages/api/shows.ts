@@ -1,4 +1,4 @@
-import { withApiAuthRequired, getAccessToken } from '@zeushq/nextjs-zauth';
+import { withApiAuthRequired, getAccessToken } from '@zeushq/nextjs-zidentity';
 
 export default withApiAuthRequired(async function shows(req, res) {
     try {

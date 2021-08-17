@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUser, withPageAuthRequired } from '@zeushq/nextjs-zauth';
+import { useUser, withPageAuthRequired } from '@zeushq/nextjs-zidentity';
 
 import Layout from '../components/Layout';
 

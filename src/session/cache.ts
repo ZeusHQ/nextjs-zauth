@@ -2,7 +2,7 @@ import { IncomingMessage, ServerResponse } from 'http';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { TokenSet } from 'openid-client';
 import onHeaders from 'on-headers';
-import { Config, SessionCache as ISessionCache, CookieStore } from '../zauth-session';
+import { Config, SessionCache as ISessionCache, CookieStore } from '../zsession';
 import Session, { fromJson, fromTokenSet } from './session';
 
 type NextApiOrPageRequest = IncomingMessage | NextApiRequest;

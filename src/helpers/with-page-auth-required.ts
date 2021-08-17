@@ -14,7 +14,7 @@ import { withPageAuthRequired as withPageAuthRequiredCSR } from '../frontend';
  *
  * ```js
  * // pages/profile.js
- * import { withPageAuthRequired } from '@zeushq/nextjs-zauth';
+ * import { withPageAuthRequired } from '@zeushq/nextjs-zidentity';
  *
  * export default function Profile({ user }) {
  *   return <div>Hello {user.name}</div>;
@@ -45,7 +45,7 @@ export type PageRoute = (cts: GetServerSidePropsContext) => Promise<GetServerSid
  *
  * ```js
  * // pages/protected-page.js
- * import { withPageAuthRequired } from '@zeushq/nextjs-zauth';
+ * import { withPageAuthRequired } from '@zeushq/nextjs-zidentity';
  *
  * export default function ProtectedPage({ user, customProp }) {
  *   return <div>Protected content</div>;
@@ -68,7 +68,7 @@ export type WithPageAuthRequiredOptions = { getServerSideProps?: GetServerSidePr
  *
  * ```js
  * // pages/protected-page.js
- * import { withPageAuthRequired } from '@zeushq/nextjs-zauth';
+ * import { withPageAuthRequired } from '@zeushq/nextjs-zidentity';
  *
  * export default function ProtectedPage() {
  *   return <div>Protected content</div>;

@@ -6,7 +6,7 @@ import Header from './Header';
 const Layout = ({ children }) => (
   <>
     <Head>
-      <title>Next.js with Zeus Auth</title>
+      <title>Next.js with Zeus Identity</title>
     </Head>
 
     <Header />

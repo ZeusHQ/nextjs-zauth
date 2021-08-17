@@ -1,7 +1,7 @@
 import { URL } from 'url';
 import { login, setup, teardown } from '../fixtures/setup';
 import { withoutApi } from '../fixtures/default-settings';
-import { get } from '../zauth-session/fixtures/helpers';
+import { get } from '../zsession/fixtures/helpers';
 
 describe('with-page-auth-required ssr', () => {
   afterEach(teardown);

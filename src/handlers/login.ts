@@ -1,5 +1,5 @@
 import { NextApiResponse, NextApiRequest } from 'next';
-import { AuthorizationParameters, HandleLogin as BaseHandleLogin } from '../zauth-session';
+import { AuthorizationParameters, HandleLogin as BaseHandleLogin } from '../zsession';
 import isSafeRedirect from '../utils/url-helpers';
 import { assertReqRes } from '../utils/assert';
 import { NextConfig } from '../config';
@@ -9,8 +9,8 @@ import { HandlerError } from '../utils/errors';
  * Use this to store additional state for the user before they visit the Identity Provider to login.
  *
  * ```js
- * // pages/api/auth/[...zauth].js
- * import { handleAuth, handleLogin } from '@zeushq/nextjs-zauth';
+ * // pages/api/auth/[...zidentity].js
+ * import { handleAuth, handleLogin } from '@zeushq/nextjs-zidentity';
  *
  * const getLoginState = (req, loginOptions) => {
  *   return { basket_id: getBasketId(req) };
@@ -45,7 +45,7 @@ export interface AuthorizationParams extends Partial<AuthorizationParameters> {
    *
    * ```js
    * // pages/api/invite.js
-   * import { handleLogin } from '@zeushq/nextjs-zauth';
+   * import { handleLogin } from '@zeushq/nextjs-zidentity';
    *
    * export default async function invite(req, res) {
    *   try {

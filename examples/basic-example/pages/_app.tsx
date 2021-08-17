@@ -1,5 +1,5 @@
 // import React from 'react';
-import { UserProvider } from '@zeushq/nextjs-zauth';
+import { UserProvider } from '@zeushq/nextjs-zidentity';
 
 export default function App({ Component, pageProps }) {
     // If you've used `withAuth`, pageProps.user can pre-populate the hook

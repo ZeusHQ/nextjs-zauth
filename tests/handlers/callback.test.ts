@@ -1,9 +1,9 @@
 import { CookieJar } from 'tough-cookie';
 import timekeeper = require('timekeeper');
 import { withApi, withoutApi } from '../fixtures/default-settings';
-import { makeIdToken } from '../zauth-session/fixtures/cert';
-import { get, post, toSignedCookieJar } from '../zauth-session/fixtures/helpers';
-import { encodeState } from '../../src/zauth-session/hooks/get-login-state';
+import { makeIdToken } from '../zsession/fixtures/cert';
+import { get, post, toSignedCookieJar } from '../zsession/fixtures/helpers';
+import { encodeState } from '../../src/zsession/hooks/get-login-state';
 import { setup, teardown } from '../fixtures/setup';
 import { Session, AfterCallback } from '../../src';
 
@@ -86,7 +86,7 @@ describe('callback handler', () => {
         },
         cookieJar
       )
-    ).rejects.toThrow('unexpected iss value, expected https://acme.zauth.local/, got: other-issuer');
+    ).rejects.toThrow('unexpected iss value, expected https://acme.zidentity.local/, got: other-issuer');
   });
 
   it('should escape html in error qp', async () => {
@@ -176,7 +176,7 @@ describe('callback handler', () => {
       accessToken: 'eyJz93a...k4laUWw',
       accessTokenExpiresAt: 750,
       accessTokenScope: 'read:foo delete:foo',
-      idToken: makeIdToken({ iss: 'https://acme.zauth.local/' }),
+      idToken: makeIdToken({ iss: 'https://acme.zidentity.local/' }),
       token_type: 'Bearer',
       refreshToken: 'GEbRxBN...edjnXbL',
       user: {
@@ -217,7 +217,7 @@ describe('callback handler', () => {
     expect(session).toStrictEqual({
       accessTokenExpiresAt: 750,
       accessTokenScope: 'read:foo delete:foo',
-      idToken: makeIdToken({ iss: 'https://acme.zauth.local/' }),
+      idToken: makeIdToken({ iss: 'https://acme.zidentity.local/' }),
       token_type: 'Bearer',
       user: {
         nickname: '__test_nickname__',

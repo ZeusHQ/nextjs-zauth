@@ -1,6 +1,6 @@
 import { login, setup, teardown } from '../fixtures/setup';
 import { withApi } from '../fixtures/default-settings';
-import { get } from '../zauth-session/fixtures/helpers';
+import { get } from '../zsession/fixtures/helpers';
 import { Session } from '../../src';
 import { refreshTokenExchange, refreshTokenRotationExchange } from '../fixtures/oidc-nocks';
 

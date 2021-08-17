@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { Socket } from 'net';
 import { mocked } from 'ts-jest/utils';
-import { CookieStore, getConfig } from '../../src/zauth-session';
+import { CookieStore, getConfig } from '../../src/zsession';
 import { Session, SessionCache } from '../../src';
 import { withoutApi } from '../fixtures/default-settings';
 

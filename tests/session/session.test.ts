@@ -1,6 +1,6 @@
 import { TokenSet } from 'openid-client';
 import { fromJson, fromTokenSet } from '../../src/session';
-import { makeIdToken } from '../zauth-session/fixtures/cert';
+import { makeIdToken } from '../zsession/fixtures/cert';
 import { Session } from '../../src';
 
 describe('session', () => {

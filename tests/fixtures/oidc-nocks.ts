@@ -1,7 +1,7 @@
 import nock from 'nock';
 import { JSONWebKeySet } from 'jose';
 import { ConfigParameters } from '../../src';
-import { makeIdToken } from '../zauth-session/fixtures/cert';
+import { makeIdToken } from '../zsession/fixtures/cert';
 
 export function discovery(params: ConfigParameters, discoveryOptions?: any): nock.Scope {
   const { error, ...metadata } = discoveryOptions || {};

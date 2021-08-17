@@ -1,7 +1,7 @@
 import { ConfigParameters } from '../../src';
 
 export const withoutApi: ConfigParameters = {
-  issuerBaseURL: 'https://acme.zauth.local',
+  issuerBaseURL: 'https://acme.zidentity.local',
   clientID: '__test_client_id__',
   clientSecret: 'client_secret',
   baseURL: 'http://www.acme.com/',
@@ -15,7 +15,7 @@ export const withoutApi: ConfigParameters = {
  * Default settings which include an audience.
  */
 export const withApi: ConfigParameters = {
-  issuerBaseURL: 'https://acme.zauth.local',
+  issuerBaseURL: 'https://acme.zidentity.local',
   clientID: '__test_client_id__',
   clientSecret: 'client_secret',
   baseURL: 'http://www.acme.com/',

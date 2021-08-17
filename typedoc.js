@@ -1,8 +1,8 @@
 module.exports = {
-    name: '@zeushq/nextjs-zauth',
+    name: '@zeushq/nextjs-zidentity',
     out: './docs/',
     exclude: [
-        './src/zauth-session/**',
+        './src/zsession/**',
         './src/session/cache.ts',
         './src/frontend/use-config.tsx',
         './src/utils/!(errors.ts)',

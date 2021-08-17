@@ -35,7 +35,7 @@ describe('config params', () => {
       httpTimeout: 5000,
       enableTelemetry: true,
       idpLogout: true,
-      zAuthLogout: true,
+      zIdentityLogout: true,
       idTokenSigningAlg: 'RS256',
       legacySameSiteCookie: true,
       authorizationParams: {
@@ -110,7 +110,7 @@ describe('config params', () => {
         ZAUTH_SESSION_ABSOLUTE_DURATION: 'no'
       }).baseConfig
     ).toMatchObject({
-      zAuthLogout: false,
+      zIdentityLogout: false,
       enableTelemetry: false,
       idpLogout: false,
       legacySameSiteCookie: false,

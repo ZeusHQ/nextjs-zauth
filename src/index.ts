@@ -5,7 +5,7 @@ import {
   loginHandler as baseLoginHandler,
   logoutHandler as baseLogoutHandler,
   callbackHandler as baseCallbackHandler
-} from './zauth-session';
+} from './zsession';
 import {
   handlerFactory,
   callbackHandler,
@@ -46,7 +46,7 @@ import {
   WithPageAuthRequiredOptions,
   PageRoute
 } from './helpers';
-import { InitZeusAuth, SignInWithZeusAuth } from './instance';
+import { InitZeusIdentity, SignInWithZeusAuth } from './instance';
 import version from './version';
 import { getConfig, getLoginUrl, ConfigParameters } from './config';
 
@@ -56,15 +56,15 @@ function getInstance(): SignInWithZeusAuth {
   if (instance) {
     return instance;
   }
-  instance = initZeusAuth();
+  instance = initZeusIdentity();
   return instance;
 }
 
-export const initZeusAuth: InitZeusAuth = (params) => {
+export const initZeusIdentity: InitZeusIdentity = (params) => {
   const { baseConfig, nextConfig } = getConfig(params);
 
   // Init base layer (with base config)
-  const getClient = clientFactory(baseConfig, { name: 'nextjs-zauth', version });
+  const getClient = clientFactory(baseConfig, { name: 'nextjs-zidentity', version });
   const transientStore = new TransientStore(baseConfig);
   const cookieStore = new CookieStore(baseConfig);
   const sessionCache = new SessionCache(baseConfig, cookieStore);

@@ -1,5 +1,5 @@
 import { NextApiResponse, NextApiRequest } from 'next';
-import { HandleLogout as BaseHandleLogout } from '../zauth-session';
+import { HandleLogout as BaseHandleLogout } from '../zsession';
 import { assertReqRes } from '../utils/assert';
 import { HandlerError } from '../utils/errors';
 

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { UserProfile, withPageAuthRequired } from '@zeushq/nextjs-zauth';
+import { UserProfile, withPageAuthRequired } from '@zeushq/nextjs-zidentity';
 
 import Layout from '../components/Layout';
 

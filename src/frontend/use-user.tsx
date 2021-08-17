@@ -45,7 +45,7 @@ type UserFetcher = (url: string) => Promise<UserProfile | undefined>;
  * ```js
  * // pages/_app.js
  * import React from 'react';
- * import { UserProvider } from '@zeushq/nextjs-zauth';
+ * import { UserProvider } from '@zeushq/nextjs-zidentity';
  *
  * export default function App({ Component, pageProps }) {
  *   // If you've used `withPageAuthRequired`, pageProps.user can pre-populate the hook
@@ -100,7 +100,7 @@ export const UserContext = createContext<UserContext>({
  * ```js
  * // pages/profile.js
  * import Link from 'next/link';
- * import { useUser } from '@zeushq/nextjs-zauth';
+ * import { useUser } from '@zeushq/nextjs-zidentity';
  *
  * export default function Profile() {
  *   const { user, error, isLoading } = useUser();

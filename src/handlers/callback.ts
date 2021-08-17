@@ -1,6 +1,6 @@
 import { strict as assert } from 'assert';
 import { NextApiResponse, NextApiRequest } from 'next';
-import { HandleCallback as BaseHandleCallback } from '../zauth-session';
+import { HandleCallback as BaseHandleCallback } from '../zsession';
 import { Session } from '../session';
 import { assertReqRes } from '../utils/assert';
 import { NextConfig } from '../config';
@@ -13,8 +13,8 @@ import { HandlerError } from '../utils/errors';
  * ### Validate additional claims
  *
  * ```js
- * // pages/api/auth/[...zauth].js
- * import { handleAuth, handleCallback } from '@zeushq/nextjs-zauth';
+ * // pages/api/auth/[...zidentity].js
+ * import { handleAuth, handleCallback } from '@zeushq/nextjs-zidentity';
  *
  * const afterCallback = (req, res, session, state) => {
  *   if (!session.user.isAdmin) {
@@ -37,8 +37,8 @@ import { HandlerError } from '../utils/errors';
  * ### Modify the session after login
  *
  * ```js
- * // pages/api/auth/[...zauth].js
- * import { handleAuth, handleCallback } from '@zeushq/nextjs-zauth';
+ * // pages/api/auth/[...zidentity].js
+ * import { handleAuth, handleCallback } from '@zeushq/nextjs-zidentity';
  *
  * const afterCallback = (req, res, session, state) => {
  *   session.user.customProperty = 'foo';
@@ -99,21 +99,21 @@ export type HandleCallback = (req: NextApiRequest, res: NextApiResponse, options
  */
 const idTokenValidator =
   (afterCallback?: AfterCallback, organization?: string): AfterCallback =>
-  (req, res, session, state) => {
-    if (organization) {
-      assert(session.user.org_id, 'Organization Id (org_id) claim must be a string present in the ID token');
-      assert.equal(
-        session.user.org_id,
-        organization,
-        `Organization Id (org_id) claim value mismatch in the ID token; ` +
+    (req, res, session, state) => {
+      if (organization) {
+        assert(session.user.org_id, 'Organization Id (org_id) claim must be a string present in the ID token');
+        assert.equal(
+          session.user.org_id,
+          organization,
+          `Organization Id (org_id) claim value mismatch in the ID token; ` +
           `expected "${organization}", found "${session.user.org_id}"`
-      );
-    }
-    if (afterCallback) {
-      return afterCallback(req, res, session, state);
-    }
-    return session;
-  };
+        );
+      }
+      if (afterCallback) {
+        return afterCallback(req, res, session, state);
+      }
+      return session;
+    };
 
 /**
  * @ignore

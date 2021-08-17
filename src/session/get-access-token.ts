@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { ClientFactory } from '../zauth-session';
+import { ClientFactory } from '../zsession';
 import { AccessTokenError } from '../utils/errors';
 import { intersect, match } from '../utils/arrays';
 import { SessionCache, fromTokenSet } from '../session';

@@ -1,5 +1,5 @@
 import { TokenSet } from 'openid-client';
-import { Config } from '../zauth-session';
+import { Config } from '../zsession';
 import { NextConfig } from '../config';
 
 /**

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { useUser } from '@zeushq/nextjs-zauth';
+import { useUser } from '@zeushq/nextjs-zidentity';
 
 const Header = (): React.ReactElement => {
     const { user } = useUser();

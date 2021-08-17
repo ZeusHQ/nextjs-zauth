@@ -9,8 +9,8 @@ import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
  * `login`, `logout`, `callback` and `profile` eg
  *
  * ```js
- * // pages/api/auth/[...zauth].js
- * import { handleAuth, handleLogin } from '@zeushq/nextjs-zauth';
+ * // pages/api/auth/[...zidentity].js
+ * import { handleAuth, handleLogin } from '@zeushq/nextjs-zidentity';
  * import { errorReporter, logger } from '../../../utils';
  *
  * export default handleAuth({
@@ -41,11 +41,11 @@ export interface Handlers {
 /**
  * The main way to use the server SDK.
  *
- * Simply set the environment variables per {@link Config} then create the file `pages/api/auth/[...zauth].js`, eg
+ * Simply set the environment variables per {@link Config} then create the file `pages/api/auth/[...zidentity].js`, eg
  *
  * ```js
- * // pages/api/auth/[...zauth].js
- * import { handleAuth } from '@zeushq/nextjs-zauth';
+ * // pages/api/auth/[...zidentity].js
+ * import { handleAuth } from '@zeushq/nextjs-zidentity';
  *
  * export default handleAuth();
  * ```
@@ -99,7 +99,7 @@ export default function handlerFactory({
     };
     return async (req, res): Promise<void> => {
       let {
-        query: { zauth: route }
+        query: { zidentity: route }
       } = req;
 
       route = Array.isArray(route) ? route[0] : route;

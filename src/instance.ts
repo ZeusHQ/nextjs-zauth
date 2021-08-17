@@ -1,12 +1,12 @@
 import { GetSession, GetAccessToken } from './session';
 import { WithApiAuthRequired, WithPageAuthRequired } from './helpers';
 import { HandleAuth, HandleCallback, HandleLogin, HandleLogout, HandleProfile } from './handlers';
-import { ConfigParameters } from './zauth-session';
+import { ConfigParameters } from './zsession';
 
 /**
  * The SDK server instance.
  *
- * This is created for you when you use the named exports, or you can create your own using {@link InitZeusAuth}
+ * This is created for you when you use the named exports, or you can create your own using {@link InitZeusIdentity}
  *
  * See {@link Config} fro more info.
  *
@@ -66,4 +66,4 @@ export interface SignInWithZeusAuth {
  *
  * @category Server
  */
-export type InitZeusAuth = (params?: ConfigParameters) => SignInWithZeusAuth;
+export type InitZeusIdentity = (params?: ConfigParameters) => SignInWithZeusAuth;

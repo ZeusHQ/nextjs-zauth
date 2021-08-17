@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUser } from '@zeushq/nextjs-zauth';
+import { useUser } from '@zeushq/nextjs-zidentity';
 
 import Layout from '../components/Layout';
 
@@ -8,7 +8,7 @@ export default function Home(): React.ReactElement {
 
     return (
         <Layout>
-            <h1>Next.js and Zeus Auth Example</h1>
+            <h1>Next.js and Zeus Identity Example</h1>
 
             {isLoading && <p>Loading login info...</p>}
 

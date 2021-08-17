@@ -1,6 +1,6 @@
 import { IncomingMessage } from 'http';
 import { AuthorizationParameters as OidcAuthorizationParameters } from 'openid-client';
-import { LoginOptions, DeepPartial, getConfig as getBaseConfig } from './zauth-session';
+import { LoginOptions, DeepPartial, getConfig as getBaseConfig } from './zsession';
 
 /**
  * @category server
@@ -20,10 +20,10 @@ export interface BaseConfig {
   session: SessionConfig;
 
   /**
-   * Boolean value to enable Zeus Auth's proprietary logout feature.
-   * Since this SDK is for Zeus Auth, it's set to `true`by default.
+   * Boolean value to enable Zeus Identity's proprietary logout feature.
+   * Since this SDK is for Zeus Identity, it's set to `true`by default.
    */
-  zAuthLogout: boolean;
+  zIdentityLogout: boolean;
 
   /**
    *  URL parameters used when redirecting users to the authorization server to log in.
@@ -92,7 +92,7 @@ export interface BaseConfig {
 
   /**
    * To opt-out of sending the library and node version to your authorization server
-   * via the `Zeus Auth-Client` header. Default is `true
+   * via the `Zeus Identity-Client` header. Default is `true
    * You can also use the ZAUTH_ENABLE_TELEMETRY environment variable.
    */
   enableTelemetry: boolean;
@@ -136,7 +136,7 @@ export interface BaseConfig {
 
   /**
    * REQUIRED. The root URL for the token issuer with no trailing slash.
-   * This is `https://` plus your Zeus Auth domain
+   * This is `https://` plus your Zeus Identity domain
    * You can also use the ZAUTH_ISSUER_BASE_URL environment variable.
    */
   issuerBaseURL: string;
@@ -305,8 +305,8 @@ export interface NextConfig extends Pick<BaseConfig, 'identityClaimFilter'> {
  * {@link WithApiAuthRequired} and {@link WithPageAuthRequired}), eg:
  *
  * ```js
- * // pages/api/auth/[...zauth].js
- * import { handleAuth } from '@zeushq/nextjs-zauth';
+ * // pages/api/auth/[...zidentity].js
+ * import { handleAuth } from '@zeushq/nextjs-zidentity';
  *
  * return handleAuth();
  * ```
@@ -347,7 +347,7 @@ export interface NextConfig extends Pick<BaseConfig, 'identityClaimFilter'> {
  * - `ZAUTH_COOKIE_SECURE`: See {@link CookieConfig.secure}
  * - `ZAUTH_COOKIE_SAME_SITE`: See {@link CookieConfig.sameSite}
  *
- * ### 2. Create your own instance using {@link InitZeus Auth}
+ * ### 2. Create your own instance using {@link InitZeusIdentity}
  *
  * If you don't want to configure the SDK with environment variables or you want more fine grained control over the
  * instance, you can create an instance yourself and use the handlers and helpers from that.
@@ -355,22 +355,22 @@ export interface NextConfig extends Pick<BaseConfig, 'identityClaimFilter'> {
  * First, export your configured instance from another module:
  *
  * ```js
- * // utils/zauth.js
- * import { initZeus Auth } from '@zeushq/nextjs-zauth';
+ * // utils/zidentity.js
+ * import { InitZeusIdentity } from '@zeushq/nextjs-zidentity';
  *
- * export default initZeus Auth({ ...ConfigParameters... });
+ * export default InitZeusIdentity({ ...ConfigParameters... });
  * ```
  *
  * Then import it into your route handler:
  *
  * ```js
- * // pages/api/auth/[...zauth].js
- * import zauth from '../../../../utils/zauth';
+ * // pages/api/auth/[...zidentity].js
+ * import zidentity from '../../../../utils/zidentity';
  *
- * return zauth.handleAuth();
+ * return zidentity.handleAuth();
  * ```
  *
- * **Note** If you use {@link InitZeus Auth}, you should *not* use the other named exports as they will use a different
+ * **Note** If you use {@link InitZeusIdentity}, you should *not* use the other named exports as they will use a different
  * instance of the SDK.
  *
  * @category Server
@@ -450,7 +450,7 @@ export const getConfig = (params: ConfigParameters = {}): { baseConfig: BaseConf
     httpTimeout: num(ZAUTH_HTTP_TIMEOUT),
     enableTelemetry: bool(ZAUTH_ENABLE_TELEMETRY),
     idpLogout: bool(ZAUTH_IDP_LOGOUT, true),
-    zAuthLogout: bool(ZAUTH_IDP_LOGOUT, true),
+    zIdentityLogout: bool(ZAUTH_IDP_LOGOUT, true),
     idTokenSigningAlg: ZAUTH_ID_TOKEN_SIGNING_ALG,
     legacySameSiteCookie: bool(ZAUTH_LEGACY_SAME_SITE_COOKIE),
     ...baseParams,

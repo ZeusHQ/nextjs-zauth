@@ -1,7 +1,7 @@
 {
-    "name": "nextjs-zauth-kitchen-sink-example",
+    "name": "nextjs-zidentity-kitchen-sink-example",
     "version": "0.0.1",
-    "description": "Typescript example for nextjs-zauth",
+    "description": "Typescript example for nextjs-zidentity",
     "main": "index.js",
     "scripts": {
         "dev": "next",
@@ -12,7 +12,7 @@
         "lint:fix": "eslint \"{components,pages}/**/*.{ts,tsx}\" --fix"
     },
     "keywords": [
-        "zauth",
+        "zidentity",
         "nextjs",
         "typescript",
         "react",
@@ -35,7 +35,7 @@
     },
     "dependencies": {
         "@serverless-jwt/next": "^0.2.1",
-        "@zeushq/nextjs-zauth": "file:../../",
+        "@zeushq/nextjs-zidentity": "file:../../",
         "next": "file:../../node_modules/next",
         "react": "file:../../node_modules/react",
         "react-dom": "file:../../node_modules/react-dom"

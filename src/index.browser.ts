@@ -1,4 +1,4 @@
-import { InitZeusAuth, SignInWithZeusAuth } from './instance';
+import { InitZeusIdentity, SignInWithZeusAuth } from './instance';
 import { GetAccessToken, GetSession } from './session';
 import { WithApiAuthRequired } from './helpers';
 import { HandleAuth, HandleCallback, HandleLogin, HandleLogout, HandleProfile } from './handlers';
@@ -44,7 +44,7 @@ const instance: SignInWithZeusAuth = {
   }
 };
 
-export const initZeusAuth: InitZeusAuth = () => instance;
+export const initZeusIdentity: InitZeusIdentity = () => instance;
 export const getSession: GetSession = (...args) => instance.getSession(...args);
 export const getAccessToken: GetAccessToken = (...args) => instance.getAccessToken(...args);
 export const withApiAuthRequired: WithApiAuthRequired = (...args) => instance.withApiAuthRequired(...args);

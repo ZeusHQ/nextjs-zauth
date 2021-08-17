@@ -7,16 +7,16 @@ import {
   LogoutOptions,
   ProfileOptions,
   WithPageAuthRequiredOptions,
-  initZeusAuth,
+  initZeusIdentity,
   AccessTokenRequest,
   Claims,
   GetAccessTokenResult
 } from '../../src';
 import { codeExchange, discovery, jwksEndpoint, userInfo } from './oidc-nocks';
-import { jwks, makeIdToken } from '../zauth-session/fixtures/cert';
+import { jwks, makeIdToken } from '../zsession/fixtures/cert';
 import { start, stop } from './server';
-import { encodeState } from '../../src/zauth-session/hooks/get-login-state';
-import { post, toSignedCookieJar } from '../zauth-session/fixtures/helpers';
+import { encodeState } from '../../src/zsession/hooks/get-login-state';
+import { post, toSignedCookieJar } from '../zsession/fixtures/helpers';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export type SetupOptions = {
@@ -49,7 +49,7 @@ export const setup = async (
 ): Promise<string> => {
   discovery(config, discoveryOptions);
   jwksEndpoint(config, jwks);
-  codeExchange(config, makeIdToken({ iss: 'https://acme.zauth.local/', ...idTokenClaims }));
+  codeExchange(config, makeIdToken({ iss: 'https://acme.zidentity.local/', ...idTokenClaims }));
   userInfo(config, userInfoToken, userInfoPayload);
   const {
     handleAuth,
@@ -61,7 +61,7 @@ export const setup = async (
     getAccessToken,
     withApiAuthRequired,
     withPageAuthRequired
-  } = await initZeusAuth(config);
+  } = await initZeusIdentity(config);
   (global as any).handleAuth = handleAuth.bind(null, {
     async callback(req, res) {
       try {

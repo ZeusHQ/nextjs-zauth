@@ -3,7 +3,7 @@ import React from 'react';
 
 import useApi from '../lib/use-api';
 import Layout from '../components/Layout';
-import { withPageAuthRequired } from '@zeushq/nextjs-zauth';
+import { withPageAuthRequired } from '@zeushq/nextjs-zidentity';
 
 type TVShow = { show: { name: string } };
 

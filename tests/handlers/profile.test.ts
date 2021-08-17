@@ -1,10 +1,10 @@
 import nock from 'nock';
 import { withApi, withoutApi } from '../fixtures/default-settings';
 import { refreshTokenRotationExchange, userInfo } from '../fixtures/oidc-nocks';
-import { get } from '../zauth-session/fixtures/helpers';
+import { get } from '../zsession/fixtures/helpers';
 import { setup, teardown, login } from '../fixtures/setup';
 import { Session, AfterCallback } from '../../src';
-import { makeIdToken } from '../zauth-session/fixtures/cert';
+import { makeIdToken } from '../zsession/fixtures/cert';
 import { IncomingMessage } from 'http';
 import { URL } from 'url';
 
@@ -92,7 +92,7 @@ describe('profile handler', () => {
     nock(`${withoutApi.issuerBaseURL}`)
       .post('/oauth/token', `grant_type=refresh_token&refresh_token=GEbRxBN...edjnXbL`)
       .reply(200, {
-        id_token: makeIdToken({ iss: 'https://acme.zauth.local/' }),
+        id_token: makeIdToken({ iss: 'https://acme.zidentity.local/' }),
         token_type: 'Bearer',
         expires_in: 750,
         scope: 'read:foo write:foo'

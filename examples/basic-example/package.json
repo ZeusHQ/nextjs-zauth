@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-zauth-basic-example",
+  "name": "nextjs-zidentity-basic-example",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@zeushq/nextjs-zauth": "file:../../",
+    "@zeushq/nextjs-zidentity": "file:../../",
     "next": "file:../../node_modules/next",
     "react": "file:../../node_modules/react",
     "react-dom": "file:../../node_modules/react-dom"

@@ -1,8 +1,8 @@
 import { parse as urlParse } from 'url';
 import { withoutApi, withApi } from '../fixtures/default-settings';
-import { decodeState } from '../../src/zauth-session/hooks/get-login-state';
+import { decodeState } from '../../src/zsession/hooks/get-login-state';
 import { setup, teardown } from '../fixtures/setup';
-import { get, getCookie } from '../zauth-session/fixtures/helpers';
+import { get, getCookie } from '../zsession/fixtures/helpers';
 import { Cookie, CookieJar } from 'tough-cookie';
 
 describe('login handler', () => {
@@ -61,7 +61,7 @@ describe('login handler', () => {
     const { value: state } = getCookie('state', cookieJar, baseUrl) as Cookie;
     expect(urlParse(headers.location, true)).toMatchObject({
       protocol: 'https:',
-      host: 'acme.zauth.local',
+      host: 'acme.zidentity.local',
       hash: null,
       query: {
         client_id: '__test_client_id__',

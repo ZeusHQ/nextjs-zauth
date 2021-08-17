@@ -8,7 +8,7 @@ import { assertReqRes } from '../utils/assert';
  *
  * ```js
  * // pages/api/protected-route.js
- * import { withApiAuthRequired, getSession } from '@zeushq/nextjs-zauth';
+ * import { withApiAuthRequired, getSession } from '@zeushq/nextjs-zidentity';
  *
  * export default withApiAuthRequired(function ProtectedRoute(req, res) {
  *   const session = getSession(req, res);
