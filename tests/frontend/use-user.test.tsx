@@ -90,7 +90,7 @@ describe('context wrapper', () => {
     });
 
     test('should use a custom profile url from an environment variable', async () => {
-        process.env.NEXT_PUBLIC_ZAUTH_PROFILE = '/api/custom-url';
+        process.env.NEXT_PUBLIC_ZIDENTITY_PROFILE = '/api/custom-url';
         const fetchSpy = jest.fn().mockReturnValue(Promise.resolve());
         (global as any).fetch = fetchSpy;
         const { result, waitForValueToChange } = renderHook(() => useUser(), {
@@ -99,7 +99,7 @@ describe('context wrapper', () => {
 
         await waitForValueToChange(() => result.current.isLoading);
         expect(fetchSpy).toHaveBeenCalledWith('/api/custom-url');
-        delete process.env.NEXT_PUBLIC_ZAUTH_PROFILE;
+        delete process.env.NEXT_PUBLIC_ZIDENTITY_PROFILE;
     });
 
     test('should accept a custom login url', async () => {

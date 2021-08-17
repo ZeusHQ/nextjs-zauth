@@ -81,14 +81,14 @@ describe('with-page-auth-required csr', () => {
     });
 
     it('should use a custom login URL', async () => {
-        process.env.NEXT_PUBLIC_ZAUTH_LOGIN = '/api/foo';
+        process.env.NEXT_PUBLIC_ZIDENTITY_LOGIN = '/api/foo';
         (global as any).fetch = fetchUserUnsuccessfulMock;
         const MyPage = (): JSX.Element => <>Private</>;
         const ProtectedPage = withPageAuthRequired(MyPage);
 
         render(<ProtectedPage />, { wrapper: withUserProvider() });
         await waitFor(() => expect(window.location.assign).toHaveBeenCalledWith(expect.stringContaining('/api/foo')));
-        delete process.env.NEXT_PUBLIC_ZAUTH_LOGIN;
+        delete process.env.NEXT_PUBLIC_ZIDENTITY_LOGIN;
     });
 
     it('should return to the root path', async () => {

@@ -21,12 +21,12 @@ describe('context wrapper', () => {
   });
 
   test('should provide a custom login url from an environment variable', async () => {
-    process.env.NEXT_PUBLIC_ZAUTH_LOGIN = '/api/custom-url';
+    process.env.NEXT_PUBLIC_ZIDENTITY_LOGIN = '/api/custom-url';
     const { result } = renderHook(() => useConfig(), {
       wrapper: withConfigProvider()
     });
 
     expect(result.current.loginUrl).toEqual('/api/custom-url');
-    delete process.env.NEXT_PUBLIC_ZAUTH_LOGIN;
+    delete process.env.NEXT_PUBLIC_ZIDENTITY_LOGIN;
   });
 });

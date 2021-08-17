@@ -1,8 +1,8 @@
 import { NextJwtVerifier } from '@serverless-jwt/next';
 
 const verifyJwt = NextJwtVerifier({
-    issuer: process.env.ZAUTH_ISSUER_BASE_URL,
-    audience: process.env.ZAUTH_AUDIENCE
+    issuer: process.env.ZIDENTITY_ISSUER_BASE_URL,
+    audience: process.env.ZIDENTITY_AUDIENCE
 });
 
 const requireScope = (scope, apiRoute) =>

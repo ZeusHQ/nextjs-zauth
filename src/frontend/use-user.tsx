@@ -148,7 +148,7 @@ const userFetcher: UserFetcher = async (url) => {
 export default ({
   children,
   user: initialUser,
-  profileUrl = process.env.NEXT_PUBLIC_ZAUTH_PROFILE || '/api/auth/me',
+  profileUrl = process.env.NEXT_PUBLIC_ZIDENTITY_PROFILE || '/api/auth/me',
   loginUrl,
   fetcher = userFetcher
 }: UserProviderProps): ReactElement<UserContext> => {

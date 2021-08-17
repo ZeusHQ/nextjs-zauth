@@ -10,7 +10,7 @@ export interface BaseConfig {
    * The secret(s) used to derive an encryption key for the user identity in a session cookie and
    * to sign the transient cookies used by the login callback.
    * Use a single string key or array of keys for an encrypted session cookie.
-   * You can also use the ZAUTH_SECRET environment variable.
+   * You can also use the ZIDENTITY_SECRET environment variable.
    */
   secret: string | Array<string>;
 
@@ -57,7 +57,7 @@ export interface BaseConfig {
 
   /**
    * The root URL for the application router, eg https://localhost
-   * You can also use the ZAUTH_BASE_URL environment variable.
+   * You can also use the ZIDENTITY_BASE_URL environment variable.
    * If you provide a domain, we will prefix it with `https://` - This can be useful when assigning it to
    * `VERCEL_URL` for Vercel deploys
    */
@@ -65,35 +65,35 @@ export interface BaseConfig {
 
   /**
    * The Client ID for your application.
-   * You can also use the ZAUTH_CLIENT_ID environment variable.
+   * You can also use the ZIDENTITY_CLIENT_ID environment variable.
    */
   clientID: string;
 
   /**
    * The Client Secret for your application.
    * Required when requesting access tokens.
-   * You can also use the ZAUTH_CLIENT_SECRET environment variable.
+   * You can also use the ZIDENTITY_CLIENT_SECRET environment variable.
    */
   clientSecret?: string;
 
   /**
    * Integer value for the system clock's tolerance (leeway) in seconds for ID token verification.`
    * Default is 60
-   * You can also use the ZAUTH_CLOCK_TOLERANCE environment variable.
+   * You can also use the ZIDENTITY_CLOCK_TOLERANCE environment variable.
    */
   clockTolerance: number;
 
   /**
    * Integer value for the http timeout in ms for authentication requests.
    * Default is 5000
-   * You can also use the ZAUTH_HTTP_TIMEOUT environment variable.
+   * You can also use the ZIDENTITY_HTTP_TIMEOUT environment variable.
    */
   httpTimeout: number;
 
   /**
    * To opt-out of sending the library and node version to your authorization server
    * via the `Zeus Identity-Client` header. Default is `true
-   * You can also use the ZAUTH_ENABLE_TELEMETRY environment variable.
+   * You can also use the ZIDENTITY_ENABLE_TELEMETRY environment variable.
    */
   enableTelemetry: boolean;
 
@@ -124,27 +124,27 @@ export interface BaseConfig {
 
   /**
    * Boolean value to log the user out from the identity provider on application logout. Default is `true`
-   * You can also use the ZAUTH_IDP_LOGOUT environment variable.
+   * You can also use the ZIDENTITY_IDP_LOGOUT environment variable.
    */
   idpLogout: boolean;
 
   /**
    * String value for the expected ID token algorithm. Default is 'RS256'
-   * You can also use the ZAUTH_ID_TOKEN_SIGNING_ALG environment variable.
+   * You can also use the ZIDENTITY_ID_TOKEN_SIGNING_ALG environment variable.
    */
   idTokenSigningAlg: string;
 
   /**
    * REQUIRED. The root URL for the token issuer with no trailing slash.
    * This is `https://` plus your Zeus Identity domain
-   * You can also use the ZAUTH_ISSUER_BASE_URL environment variable.
+   * You can also use the ZIDENTITY_ISSUER_BASE_URL environment variable.
    */
   issuerBaseURL: string;
 
   /**
    * Set a fallback cookie with no `SameSite` attribute when `response_mode` is `form_post`.
    * The default `response_mode` for this SDK is `query` so this defaults to `false`
-   * You can also use the ZAUTH_LEGACY_SAME_SITE_COOKIE environment variable.
+   * You can also use the ZIDENTITY_LEGACY_SAME_SITE_COOKIE environment variable.
    */
   legacySameSiteCookie: boolean;
 
@@ -156,14 +156,14 @@ export interface BaseConfig {
      * Either a relative path to the application or a valid URI to an external domain.
      * This value must be registered on the authorization server.
      * The user will be redirected to this after a logout has been performed.
-     * You can also use the ZAUTH_POST_LOGOUT_REDIRECT environment variable.
+     * You can also use the ZIDENTITY_POST_LOGOUT_REDIRECT environment variable.
      */
     postLogoutRedirect: string;
 
     /**
      * Relative path to the application callback to process the response from the authorization server.
      * Defaults to `/api/auth/callback`
-     * You can also use the ZAUTH_CALLBACK environment variable.
+     * You can also use the ZIDENTITY_CALLBACK environment variable.
      */
     callback: string;
   };
@@ -179,7 +179,7 @@ export interface SessionConfig {
    * String value for the cookie name used for the internal session.
    * This value must only include letters, numbers, and underscores.
    * Default is `appSession`.
-   * You can also use the ZAUTH_SESSION_NAME environment variable.
+   * You can also use the ZIDENTITY_SESSION_NAME environment variable.
    */
   name: string;
 
@@ -189,7 +189,7 @@ export interface SessionConfig {
    * duration to be absolute, where the user is logged out a fixed time after login,
    * regardless of activity, set this to `false`
    * Default is `true`.
-   * You can also use the ZAUTH_SESSION_ROLLING environment variable.
+   * You can also use the ZIDENTITY_SESSION_ROLLING environment variable.
    */
   rolling: boolean;
 
@@ -197,7 +197,7 @@ export interface SessionConfig {
    * Integer value, in seconds, for application session rolling duration.
    * The amount of time for which the user must be idle for then to be logged out.
    * Default is 86400 seconds (1 day).
-   * You can also use the ZAUTH_SESSION_ROLLING_DURATION environment variable.
+   * You can also use the ZIDENTITY_SESSION_ROLLING_DURATION environment variable.
    */
   rollingDuration: number;
 
@@ -206,7 +206,7 @@ export interface SessionConfig {
    * The amount of time after the user has logged in that they will be logged out.
    * Set this to `false` if you don't want an absolute duration on your session.
    * Default is 604800 seconds (7 days).
-   * You can also use the ZAUTH_SESSION_ABSOLUTE_DURATION environment variable.
+   * You can also use the ZIDENTITY_SESSION_ABSOLUTE_DURATION environment variable.
    */
   absoluteDuration: boolean | number;
 
@@ -221,7 +221,7 @@ export interface SessionConfig {
 export interface CookieConfig {
   /**
    * Domain name for the cookie.
-   * You can also use the ZAUTH_COOKIE_DOMAIN environment variable.
+   * You can also use the ZIDENTITY_COOKIE_DOMAIN environment variable.
    */
   domain?: string;
 
@@ -229,35 +229,35 @@ export interface CookieConfig {
    * Path for the cookie.
    * This defaults to `/`
    * You should change this to be more restrictive if you application shares a domain with other apps.
-   * You can also use the ZAUTH_COOKIE_PATH environment variable.
+   * You can also use the ZIDENTITY_COOKIE_PATH environment variable.
    */
   path?: string;
 
   /**
    * Set to true to use a transient cookie (cookie without an explicit expiration).
    * Default is `false`
-   * You can also use the ZAUTH_COOKIE_TRANSIENT environment variable.
+   * You can also use the ZIDENTITY_COOKIE_TRANSIENT environment variable.
    */
   transient: boolean;
 
   /**
    * Flags the cookie to be accessible only by the web server.
    * Defaults to `true`.
-   * You can also use the ZAUTH_COOKIE_HTTP_ONLY environment variable.
+   * You can also use the ZIDENTITY_COOKIE_HTTP_ONLY environment variable.
    */
   httpOnly: boolean;
 
   /**
    * Marks the cookie to be used over secure channels only.
    * Defaults to the protocol of {@link BaseConfig.baseURL}.
-   * You can also use the ZAUTH_COOKIE_SECURE environment variable.
+   * You can also use the ZIDENTITY_COOKIE_SECURE environment variable.
    */
   secure?: boolean;
 
   /**
    * Value of the SameSite Set-Cookie attribute.
    * Defaults to "lax" but will be adjusted based on {@link AuthorizationParameters.response_type}.
-   * You can also use the ZAUTH_COOKIE_SAME_SITE environment variable.
+   * You can also use the ZIDENTITY_COOKIE_SAME_SITE environment variable.
    */
   sameSite: 'lax' | 'strict' | 'none';
 }
@@ -316,36 +316,36 @@ export interface NextConfig extends Pick<BaseConfig, 'identityClaimFilter'> {
  *
  * ### Required
  *
- * - `ZAUTH_SECRET`: See {@link secret}
- * - `ZAUTH_ISSUER_BASE_URL`: See {@link issuerBaseURL}
- * - `ZAUTH_BASE_URL`: See {@link baseURL}
- * - `ZAUTH_CLIENT_ID`: See {@link clientID}
- * - `ZAUTH_CLIENT_SECRET`: See {@link clientSecret}
+ * - `ZIDENTITY_SECRET`: See {@link secret}
+ * - `ZIDENTITY_ISSUER_BASE_URL`: See {@link issuerBaseURL}
+ * - `ZIDENTITY_BASE_URL`: See {@link baseURL}
+ * - `ZIDENTITY_CLIENT_ID`: See {@link clientID}
+ * - `ZIDENTITY_CLIENT_SECRET`: See {@link clientSecret}
  *
  * ### Optional
  *
- * - `ZAUTH_CLOCK_TOLERANCE`: See {@link clockTolerance}
- * - `ZAUTH_HTTP_TIMEOUT`: See {@link httpTimeout}
- * - `ZAUTH_ENABLE_TELEMETRY`: See {@link enableTelemetry}
- * - `ZAUTH_IDP_LOGOUT`: See {@link idpLogout}
- * - `ZAUTH_ID_TOKEN_SIGNING_ALG`: See {@link idTokenSigningAlg}
- * - `ZAUTH_LEGACY_SAME_SITE_COOKIE`: See {@link legacySameSiteCookie}
- * - `NEXT_PUBLIC_ZAUTH_LOGIN`: See {@link NextConfig.routes}
- * - `ZAUTH_CALLBACK`: See {@link BaseConfig.routes}
- * - `ZAUTH_POST_LOGOUT_REDIRECT`: See {@link BaseConfig.routes}
- * - `ZAUTH_AUDIENCE`: See {@link BaseConfig.authorizationParams}
- * - `ZAUTH_SCOPE`: See {@link BaseConfig.authorizationParams}
- * - `ZAUTH_ORGANIZATION`: See {@link NextConfig.organization}
- * - `ZAUTH_SESSION_NAME`: See {@link SessionConfig.name}
- * - `ZAUTH_SESSION_ROLLING`: See {@link SessionConfig.rolling}
- * - `ZAUTH_SESSION_ROLLING_DURATION`: See {@link SessionConfig.rollingDuration}
- * - `ZAUTH_SESSION_ABSOLUTE_DURATION`: See {@link SessionConfig.absoluteDuration}
- * - `ZAUTH_COOKIE_DOMAIN`: See {@link CookieConfig.domain}
- * - `ZAUTH_COOKIE_PATH`: See {@link CookieConfig.path}
- * - `ZAUTH_COOKIE_TRANSIENT`: See {@link CookieConfig.transient}
- * - `ZAUTH_COOKIE_HTTP_ONLY`: See {@link CookieConfig.httpOnly}
- * - `ZAUTH_COOKIE_SECURE`: See {@link CookieConfig.secure}
- * - `ZAUTH_COOKIE_SAME_SITE`: See {@link CookieConfig.sameSite}
+ * - `ZIDENTITY_CLOCK_TOLERANCE`: See {@link clockTolerance}
+ * - `ZIDENTITY_HTTP_TIMEOUT`: See {@link httpTimeout}
+ * - `ZIDENTITY_ENABLE_TELEMETRY`: See {@link enableTelemetry}
+ * - `ZIDENTITY_IDP_LOGOUT`: See {@link idpLogout}
+ * - `ZIDENTITY_ID_TOKEN_SIGNING_ALG`: See {@link idTokenSigningAlg}
+ * - `ZIDENTITY_LEGACY_SAME_SITE_COOKIE`: See {@link legacySameSiteCookie}
+ * - `NEXT_PUBLIC_ZIDENTITY_LOGIN`: See {@link NextConfig.routes}
+ * - `ZIDENTITY_CALLBACK`: See {@link BaseConfig.routes}
+ * - `ZIDENTITY_POST_LOGOUT_REDIRECT`: See {@link BaseConfig.routes}
+ * - `ZIDENTITY_AUDIENCE`: See {@link BaseConfig.authorizationParams}
+ * - `ZIDENTITY_SCOPE`: See {@link BaseConfig.authorizationParams}
+ * - `ZIDENTITY_ORGANIZATION`: See {@link NextConfig.organization}
+ * - `ZIDENTITY_SESSION_NAME`: See {@link SessionConfig.name}
+ * - `ZIDENTITY_SESSION_ROLLING`: See {@link SessionConfig.rolling}
+ * - `ZIDENTITY_SESSION_ROLLING_DURATION`: See {@link SessionConfig.rollingDuration}
+ * - `ZIDENTITY_SESSION_ABSOLUTE_DURATION`: See {@link SessionConfig.absoluteDuration}
+ * - `ZIDENTITY_COOKIE_DOMAIN`: See {@link CookieConfig.domain}
+ * - `ZIDENTITY_COOKIE_PATH`: See {@link CookieConfig.path}
+ * - `ZIDENTITY_COOKIE_TRANSIENT`: See {@link CookieConfig.transient}
+ * - `ZIDENTITY_COOKIE_HTTP_ONLY`: See {@link CookieConfig.httpOnly}
+ * - `ZIDENTITY_COOKIE_SECURE`: See {@link CookieConfig.secure}
+ * - `ZIDENTITY_COOKIE_SAME_SITE`: See {@link CookieConfig.sameSite}
  *
  * ### 2. Create your own instance using {@link InitZeusIdentity}
  *
@@ -400,7 +400,7 @@ const num = (param?: string): number | undefined => (param === undefined || para
  * @ignore
  */
 export const getLoginUrl = (): string => {
-  return process.env.NEXT_PUBLIC_ZAUTH_LOGIN || '/api/auth/login';
+  return process.env.NEXT_PUBLIC_ZIDENTITY_LOGIN || '/api/auth/login';
 };
 
 /**
@@ -408,80 +408,80 @@ export const getLoginUrl = (): string => {
  */
 export const getConfig = (params: ConfigParameters = {}): { baseConfig: BaseConfig; nextConfig: NextConfig } => {
   // Don't use destructuring here so that the `DefinePlugin` can replace any env vars specified in `next.config.js`
-  const ZAUTH_SECRET = process.env.ZAUTH_SECRET;
-  const ZAUTH_ISSUER_BASE_URL = process.env.ZAUTH_ISSUER_BASE_URL;
-  const ZAUTH_BASE_URL = process.env.ZAUTH_BASE_URL;
-  const ZAUTH_CLIENT_ID = process.env.ZAUTH_CLIENT_ID;
-  const ZAUTH_CLIENT_SECRET = process.env.ZAUTH_CLIENT_SECRET;
-  const ZAUTH_CLOCK_TOLERANCE = process.env.ZAUTH_CLOCK_TOLERANCE;
-  const ZAUTH_HTTP_TIMEOUT = process.env.ZAUTH_HTTP_TIMEOUT;
-  const ZAUTH_ENABLE_TELEMETRY = process.env.ZAUTH_ENABLE_TELEMETRY;
-  const ZAUTH_IDP_LOGOUT = process.env.ZAUTH_IDP_LOGOUT;
-  const ZAUTH_ID_TOKEN_SIGNING_ALG = process.env.ZAUTH_ID_TOKEN_SIGNING_ALG;
-  const ZAUTH_LEGACY_SAME_SITE_COOKIE = process.env.ZAUTH_LEGACY_SAME_SITE_COOKIE;
-  const ZAUTH_CALLBACK = process.env.ZAUTH_CALLBACK;
-  const ZAUTH_POST_LOGOUT_REDIRECT = process.env.ZAUTH_POST_LOGOUT_REDIRECT;
-  const ZAUTH_AUDIENCE = process.env.ZAUTH_AUDIENCE;
-  const ZAUTH_SCOPE = process.env.ZAUTH_SCOPE;
-  const ZAUTH_ORGANIZATION = process.env.ZAUTH_ORGANIZATION;
-  const ZAUTH_SESSION_NAME = process.env.ZAUTH_SESSION_NAME;
-  const ZAUTH_SESSION_ROLLING = process.env.ZAUTH_SESSION_ROLLING;
-  const ZAUTH_SESSION_ROLLING_DURATION = process.env.ZAUTH_SESSION_ROLLING_DURATION;
-  const ZAUTH_SESSION_ABSOLUTE_DURATION = process.env.ZAUTH_SESSION_ABSOLUTE_DURATION;
-  const ZAUTH_COOKIE_DOMAIN = process.env.ZAUTH_COOKIE_DOMAIN;
-  const ZAUTH_COOKIE_PATH = process.env.ZAUTH_COOKIE_PATH;
-  const ZAUTH_COOKIE_TRANSIENT = process.env.ZAUTH_COOKIE_TRANSIENT;
-  const ZAUTH_COOKIE_HTTP_ONLY = process.env.ZAUTH_COOKIE_HTTP_ONLY;
-  const ZAUTH_COOKIE_SECURE = process.env.ZAUTH_COOKIE_SECURE;
-  const ZAUTH_COOKIE_SAME_SITE = process.env.ZAUTH_COOKIE_SAME_SITE;
+  const ZIDENTITY_SECRET = process.env.ZIDENTITY_SECRET;
+  const ZIDENTITY_ISSUER_BASE_URL = process.env.ZIDENTITY_ISSUER_BASE_URL;
+  const ZIDENTITY_BASE_URL = process.env.ZIDENTITY_BASE_URL;
+  const ZIDENTITY_CLIENT_ID = process.env.ZIDENTITY_CLIENT_ID;
+  const ZIDENTITY_CLIENT_SECRET = process.env.ZIDENTITY_CLIENT_SECRET;
+  const ZIDENTITY_CLOCK_TOLERANCE = process.env.ZIDENTITY_CLOCK_TOLERANCE;
+  const ZIDENTITY_HTTP_TIMEOUT = process.env.ZIDENTITY_HTTP_TIMEOUT;
+  const ZIDENTITY_ENABLE_TELEMETRY = process.env.ZIDENTITY_ENABLE_TELEMETRY;
+  const ZIDENTITY_IDP_LOGOUT = process.env.ZIDENTITY_IDP_LOGOUT;
+  const ZIDENTITY_ID_TOKEN_SIGNING_ALG = process.env.ZIDENTITY_ID_TOKEN_SIGNING_ALG;
+  const ZIDENTITY_LEGACY_SAME_SITE_COOKIE = process.env.ZIDENTITY_LEGACY_SAME_SITE_COOKIE;
+  const ZIDENTITY_CALLBACK = process.env.ZIDENTITY_CALLBACK;
+  const ZIDENTITY_POST_LOGOUT_REDIRECT = process.env.ZIDENTITY_POST_LOGOUT_REDIRECT;
+  const ZIDENTITY_AUDIENCE = process.env.ZIDENTITY_AUDIENCE;
+  const ZIDENTITY_SCOPE = process.env.ZIDENTITY_SCOPE;
+  const ZIDENTITY_ORGANIZATION = process.env.ZIDENTITY_ORGANIZATION;
+  const ZIDENTITY_SESSION_NAME = process.env.ZIDENTITY_SESSION_NAME;
+  const ZIDENTITY_SESSION_ROLLING = process.env.ZIDENTITY_SESSION_ROLLING;
+  const ZIDENTITY_SESSION_ROLLING_DURATION = process.env.ZIDENTITY_SESSION_ROLLING_DURATION;
+  const ZIDENTITY_SESSION_ABSOLUTE_DURATION = process.env.ZIDENTITY_SESSION_ABSOLUTE_DURATION;
+  const ZIDENTITY_COOKIE_DOMAIN = process.env.ZIDENTITY_COOKIE_DOMAIN;
+  const ZIDENTITY_COOKIE_PATH = process.env.ZIDENTITY_COOKIE_PATH;
+  const ZIDENTITY_COOKIE_TRANSIENT = process.env.ZIDENTITY_COOKIE_TRANSIENT;
+  const ZIDENTITY_COOKIE_HTTP_ONLY = process.env.ZIDENTITY_COOKIE_HTTP_ONLY;
+  const ZIDENTITY_COOKIE_SECURE = process.env.ZIDENTITY_COOKIE_SECURE;
+  const ZIDENTITY_COOKIE_SAME_SITE = process.env.ZIDENTITY_COOKIE_SAME_SITE;
 
   const baseURL =
-    ZAUTH_BASE_URL && !/^https?:\/\//.test(ZAUTH_BASE_URL as string) ? `https://${ZAUTH_BASE_URL}` : ZAUTH_BASE_URL;
+    ZIDENTITY_BASE_URL && !/^https?:\/\//.test(ZIDENTITY_BASE_URL as string) ? `https://${ZIDENTITY_BASE_URL}` : ZIDENTITY_BASE_URL;
 
   const { organization, ...baseParams } = params;
 
   const baseConfig = getBaseConfig({
-    secret: ZAUTH_SECRET,
-    issuerBaseURL: ZAUTH_ISSUER_BASE_URL,
+    secret: ZIDENTITY_SECRET,
+    issuerBaseURL: ZIDENTITY_ISSUER_BASE_URL,
     baseURL: baseURL,
-    clientID: ZAUTH_CLIENT_ID,
-    clientSecret: ZAUTH_CLIENT_SECRET,
-    clockTolerance: num(ZAUTH_CLOCK_TOLERANCE),
-    httpTimeout: num(ZAUTH_HTTP_TIMEOUT),
-    enableTelemetry: bool(ZAUTH_ENABLE_TELEMETRY),
-    idpLogout: bool(ZAUTH_IDP_LOGOUT, true),
-    zIdentityLogout: bool(ZAUTH_IDP_LOGOUT, true),
-    idTokenSigningAlg: ZAUTH_ID_TOKEN_SIGNING_ALG,
-    legacySameSiteCookie: bool(ZAUTH_LEGACY_SAME_SITE_COOKIE),
+    clientID: ZIDENTITY_CLIENT_ID,
+    clientSecret: ZIDENTITY_CLIENT_SECRET,
+    clockTolerance: num(ZIDENTITY_CLOCK_TOLERANCE),
+    httpTimeout: num(ZIDENTITY_HTTP_TIMEOUT),
+    enableTelemetry: bool(ZIDENTITY_ENABLE_TELEMETRY),
+    idpLogout: bool(ZIDENTITY_IDP_LOGOUT, true),
+    zIdentityLogout: bool(ZIDENTITY_IDP_LOGOUT, true),
+    idTokenSigningAlg: ZIDENTITY_ID_TOKEN_SIGNING_ALG,
+    legacySameSiteCookie: bool(ZIDENTITY_LEGACY_SAME_SITE_COOKIE),
     ...baseParams,
     authorizationParams: {
       response_type: 'code',
-      audience: ZAUTH_AUDIENCE,
-      scope: ZAUTH_SCOPE,
+      audience: ZIDENTITY_AUDIENCE,
+      scope: ZIDENTITY_SCOPE,
       ...baseParams.authorizationParams
     },
     session: {
-      name: ZAUTH_SESSION_NAME,
-      rolling: bool(ZAUTH_SESSION_ROLLING),
-      rollingDuration: num(ZAUTH_SESSION_ROLLING_DURATION),
+      name: ZIDENTITY_SESSION_NAME,
+      rolling: bool(ZIDENTITY_SESSION_ROLLING),
+      rollingDuration: num(ZIDENTITY_SESSION_ROLLING_DURATION),
       absoluteDuration:
-        ZAUTH_SESSION_ABSOLUTE_DURATION && isNaN(Number(ZAUTH_SESSION_ABSOLUTE_DURATION))
-          ? bool(ZAUTH_SESSION_ABSOLUTE_DURATION)
-          : num(ZAUTH_SESSION_ABSOLUTE_DURATION),
+        ZIDENTITY_SESSION_ABSOLUTE_DURATION && isNaN(Number(ZIDENTITY_SESSION_ABSOLUTE_DURATION))
+          ? bool(ZIDENTITY_SESSION_ABSOLUTE_DURATION)
+          : num(ZIDENTITY_SESSION_ABSOLUTE_DURATION),
       ...baseParams.session,
       cookie: {
-        domain: ZAUTH_COOKIE_DOMAIN,
-        path: ZAUTH_COOKIE_PATH || '/',
-        transient: bool(ZAUTH_COOKIE_TRANSIENT),
-        httpOnly: bool(ZAUTH_COOKIE_HTTP_ONLY),
-        secure: bool(ZAUTH_COOKIE_SECURE),
-        sameSite: ZAUTH_COOKIE_SAME_SITE as 'lax' | 'strict' | 'none' | undefined,
+        domain: ZIDENTITY_COOKIE_DOMAIN,
+        path: ZIDENTITY_COOKIE_PATH || '/',
+        transient: bool(ZIDENTITY_COOKIE_TRANSIENT),
+        httpOnly: bool(ZIDENTITY_COOKIE_HTTP_ONLY),
+        secure: bool(ZIDENTITY_COOKIE_SECURE),
+        sameSite: ZIDENTITY_COOKIE_SAME_SITE as 'lax' | 'strict' | 'none' | undefined,
         ...baseParams.session?.cookie
       }
     },
     routes: {
-      callback: baseParams.routes?.callback || ZAUTH_CALLBACK || '/api/auth/callback',
-      postLogoutRedirect: baseParams.routes?.postLogoutRedirect || ZAUTH_POST_LOGOUT_REDIRECT
+      callback: baseParams.routes?.callback || ZIDENTITY_CALLBACK || '/api/auth/callback',
+      postLogoutRedirect: baseParams.routes?.postLogoutRedirect || ZIDENTITY_POST_LOGOUT_REDIRECT
     }
   });
 
@@ -491,7 +491,7 @@ export const getConfig = (params: ConfigParameters = {}): { baseConfig: BaseConf
       login: baseParams.routes?.login || getLoginUrl()
     },
     identityClaimFilter: baseConfig.identityClaimFilter,
-    organization: organization || ZAUTH_ORGANIZATION
+    organization: organization || ZIDENTITY_ORGANIZATION
   };
 
   return { baseConfig, nextConfig };

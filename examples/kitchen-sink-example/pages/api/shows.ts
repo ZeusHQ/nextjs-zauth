@@ -7,9 +7,9 @@ export default withApiAuthRequired(async function shows(req, res) {
         });
 
         const baseURL =
-            process.env.ZAUTH_BASE_URL?.indexOf('http') === 0
-                ? process.env.ZAUTH_BASE_URL
-                : `https://${process.env.ZAUTH_BASE_URL}`;
+            process.env.ZIDENTITY_BASE_URL?.indexOf('http') === 0
+                ? process.env.ZIDENTITY_BASE_URL
+                : `https://${process.env.ZIDENTITY_BASE_URL}`;
 
         // This is a contrived example, normally your external API would exist on another domain.
         const response = await fetch(baseURL + '/api/my/shows', {

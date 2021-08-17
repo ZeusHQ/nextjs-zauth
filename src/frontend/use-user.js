@@ -87,7 +87,7 @@ var userFetcher = function (url) { return __awaiter(void 0, void 0, void 0, func
     });
 }); };
 export default (function (_a) {
-    var children = _a.children, initialUser = _a.user, _b = _a.profileUrl, profileUrl = _b === void 0 ? process.env.NEXT_PUBLIC_ZAUTH_PROFILE || '/api/auth/me' : _b, loginUrl = _a.loginUrl, _c = _a.fetcher, fetcher = _c === void 0 ? userFetcher : _c;
+    var children = _a.children, initialUser = _a.user, _b = _a.profileUrl, profileUrl = _b === void 0 ? process.env.NEXT_PUBLIC_ZIDENTITY_PROFILE || '/api/auth/me' : _b, loginUrl = _a.loginUrl, _c = _a.fetcher, fetcher = _c === void 0 ? userFetcher : _c;
     var _d = useState({ user: initialUser, isLoading: !initialUser }), state = _d[0], setState = _d[1];
     var checkSession = useCallback(function () { return __awaiter(void 0, void 0, void 0, function () {
         var user_1, _e_1, error_1;

@@ -51,14 +51,14 @@ describe('with-page-auth-required ssr', () => {
   });
 
   test('use a custom login url', async () => {
-    process.env.NEXT_PUBLIC_ZAUTH_LOGIN = '/api/foo';
+    process.env.NEXT_PUBLIC_ZIDENTITY_LOGIN = '/api/foo';
     const baseUrl = await setup(withoutApi);
     const {
       res: { statusCode, headers }
     } = await get(baseUrl, '/protected', { fullResponse: true });
     expect(statusCode).toBe(307);
     expect(decodeURIComponent(headers.location)).toBe('/api/foo?returnTo=/protected');
-    delete process.env.NEXT_PUBLIC_ZAUTH_LOGIN;
+    delete process.env.NEXT_PUBLIC_ZIDENTITY_LOGIN;
   });
 
   test('is a noop when invoked as a client-side protection from the server', async () => {
