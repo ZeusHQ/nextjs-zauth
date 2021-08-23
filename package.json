@@ -1,7 +1,7 @@
 {
   "name": "@zeushq/nextjs-zidentity",
   "description": "Next.js SDK for signin in with Zeus Identity",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "browser": "dist/index.browser.js",
@@ -65,7 +65,7 @@
     "url-join": "^4.0.1"
   },
   "peerDependencies": {
-    "next": "^11.0.1",
+    "next": "^11.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
@@ -78,7 +78,7 @@
     "@types/cookie": "^0.4.0",
     "@types/debug": "^4.1.5",
     "@types/http-errors": "^1.8.0",
-    "@types/jest": "^26.0.20",
+    "@types/jest": "^27.0.1",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/node": "^16.3.2",
     "@types/on-headers": "^1.0.0",
@@ -90,8 +90,9 @@
     "@typescript-eslint/eslint-plugin": "^4.13.0",
     "@typescript-eslint/parser": "^4.13.0",
     "body-parser": "^1.19.0",
-    "eslint-config-next": "^11.0.1",
+    "child_process": "^1.0.2",
     "eslint": "^7.17.0",
+    "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-import-resolver-typescript": "^2.3.0",
     "eslint-plugin-import": "^2.22.1",

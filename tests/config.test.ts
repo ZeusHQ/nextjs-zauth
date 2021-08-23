@@ -6,8 +6,8 @@ const getConfigWithEnv = (env: any = {}, opts?: any): { baseConfig: BaseConfig; 
     ...process.env,
     ...{
       ZIDENTITY_SECRET: '__long_super_secret_secret__',
-      ZIDENTITY_ISSUER_BASE_URL: 'https://example.identity.zeusdev.io',
-      ZIDENTITY_BASE_URL: 'https://example.com',
+      ZIDENTITY_ISSUER_BASE_URL: 'http://zeus-dev.us.id.zeusdev.local:3001',
+      ZIDENTITY_BASE_URL: 'http://localhost:3001',
       ZIDENTITY_CLIENT_ID: '__test_client_id__',
       ZIDENTITY_CLIENT_SECRET: '__test_client_secret__'
     },
@@ -27,8 +27,8 @@ describe('config params', () => {
     const { baseConfig, nextConfig } = getConfigWithEnv();
     expect(baseConfig).toStrictEqual({
       secret: '__long_super_secret_secret__',
-      issuerBaseURL: 'https://example.identity.zeusdev.io',
-      baseURL: 'https://example.com',
+      issuerBaseURL: 'http://zeus-dev.us.id.zeusdev.local:3001',
+      baseURL: 'http://localhost:3001',
       clientID: '__test_client_id__',
       clientSecret: '__test_client_secret__',
       clockTolerance: 60,
@@ -194,10 +194,10 @@ describe('config params', () => {
   test('should allow hostnames as baseURL', () => {
     expect(
       getConfigWithEnv({
-        ZIDENTITY_BASE_URL: 'foo.identity.zeusdev.io'
+        ZIDENTITY_BASE_URL: 'foo.id.zeusdev.io'
       }).baseConfig
     ).toMatchObject({
-      baseURL: 'https://foo.identity.zeusdev.io'
+      baseURL: 'https://foo.id.zeusdev.io'
     });
   });
 

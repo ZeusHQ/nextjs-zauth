@@ -45,7 +45,7 @@ export default function get(config: Config, { name, version }: Telemetry): Clien
         'User-Agent': `${name}/${version}`,
         ...(config.enableTelemetry
           ? {
-              'ZAuth-Client': Buffer.from(
+              'ZIdentity-Client': Buffer.from(
                 JSON.stringify({
                   name,
                   version,

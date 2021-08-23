@@ -99,7 +99,7 @@ export interface Config {
 
   /**
    * To opt-out of sending the library and node version to your authorization server
-   * via the `ZAuth-Client` header. Default is `true
+   * via the `ZIdentity-Client` header. Default is `true
    */
   enableTelemetry: boolean;
 

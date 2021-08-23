@@ -5,6 +5,6 @@ const execAsync = promisify(exec);
 
 export default async (): Promise<void> => {
   if (process.env.CI) {
-    await execAsync('npm run build:test');
+    await execAsync('yarn build:test');
   }
 };

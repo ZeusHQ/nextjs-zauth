@@ -162,11 +162,11 @@ export const setup = async (
 
   nock('https://op.example.com').get('/.well-known/jwks.json').reply(200, jwks);
 
-  nock('https://test.us.id.zeusdev.io')
+  nock('http://test.us.id.zeusdev.local:3001')
     .get('/.well-known/openid-configuration')
-    .reply(200, { ...wellKnown, issuer: 'https://test.us.id.zeusdev.io/', end_session_endpoint: undefined });
+    .reply(200, { ...wellKnown, issuer: 'http://test.us.id.zeusdev.local:3001', end_session_endpoint: undefined });
 
-  nock('https://test.us.id.zeusdev.io', { allowUnmocked: true }).persist().get('/.well-known/jwks.json').reply(200, jwks);
+  nock('http://test.us.id.zeusdev.local:3001', { allowUnmocked: true }).persist().get('/.well-known/jwks.json').reply(200, jwks);
 
   let listener: any = null;
   const listen = (req: IncomingMessage, res: ServerResponse): Promise<void> | null => listener(req, res);
