@@ -101,17 +101,17 @@ describe('clientFactory', function () {
   });
 
   // it('should create custom logout for zeus auth', async function () {
-  //   nock('https://test.us.id.zeusdev.io')
+  //   nock('https://test.us.zidentity.io')
   //     .get('/.well-known/openid-configuration')
-  //     .reply(200, { ...wellKnown, issuer: 'https://test.us.id.zeusdev.io/', end_session_endpoint: undefined });
-  //   nock('https://test.us.id.zeusdev.io').get('/.well-known/jwks.json').reply(200, jwks);
+  //     .reply(200, { ...wellKnown, issuer: 'https://test.us.zidentity.io/', end_session_endpoint: undefined });
+  //   nock('https://test.us.zidentity.io').get('/.well-known/jwks.json').reply(200, jwks);
 
   //   const client = await getClient({
-  //     issuerBaseURL: 'https://test.us.id.zeusdev.io',
+  //     issuerBaseURL: 'https://test.us.zidentity.io',
   //     idpLogout: true
   //   });
   //   expect(client.endSessionUrl({ post_logout_redirect_uri: 'foo' })).toEqual(
-  //     'https://test.us.id.zeusdev.io/v2/logout?returnTo=foo&client_id=__test_client_id__'
+  //     'https://test.us.zidentity.io/v2/logout?returnTo=foo&client_id=__test_client_id__'
   //   );
   // });
 

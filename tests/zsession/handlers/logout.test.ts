@@ -81,7 +81,7 @@ describe('logout route', () => {
   it('should perform an zeus auth logout', async () => {
     const baseURL = await setup({
       ...defaultConfig,
-      issuerBaseURL: 'https://test.us.id.zeusdev.io/',
+      issuerBaseURL: 'https://test.us.zidentity.io/',
       idpLogout: true,
       zIdentityLogout: true
     });
@@ -91,7 +91,7 @@ describe('logout route', () => {
     await post(baseURL, '/callback', {
       body: {
         state,
-        id_token: makeIdToken({ nonce, iss: 'https://test.us.id.zeusdev.io/' })
+        id_token: makeIdToken({ nonce, iss: 'https://test.us.zidentity.io/' })
       },
       cookieJar
     });
@@ -106,7 +106,7 @@ describe('logout route', () => {
     expect(res.statusCode).toEqual(302);
     const redirect = parse(res.headers.location, true);
     expect(redirect).toMatchObject({
-      hostname: 'test.us.id.zeusdev.io',
+      hostname: 'test.us.zidentity.io',
       pathname: '/v2/logout',
       protocol: 'https:',
       query: expect.objectContaining({
