@@ -162,11 +162,11 @@ export const setup = async (
 
   nock('https://op.example.com').get('/.well-known/jwks.json').reply(200, jwks);
 
-  nock('http://test.us.zidentity.local:3001')
+  nock('http://test.zidentity.local:3001')
     .get('/.well-known/openid-configuration')
-    .reply(200, { ...wellKnown, issuer: 'http://test.us.zidentity.local:3001', end_session_endpoint: undefined });
+    .reply(200, { ...wellKnown, issuer: 'http://test.zidentity.local:3001', end_session_endpoint: undefined });
 
-  nock('http://test.us.zidentity.local:3001', { allowUnmocked: true }).persist().get('/.well-known/jwks.json').reply(200, jwks);
+  nock('http://test.zidentity.local:3001', { allowUnmocked: true }).persist().get('/.well-known/jwks.json').reply(200, jwks);
 
   let listener: any = null;
   const listen = (req: IncomingMessage, res: ServerResponse): Promise<void> | null => listener(req, res);
