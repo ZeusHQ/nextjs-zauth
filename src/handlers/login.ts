@@ -128,7 +128,7 @@ export default function handleLoginFactory(handler: BaseHandleLogin, nextConfig:
         };
       }
       return await handler(req, res, options);
-    } catch (e) {
+    } catch (e: any) {
       throw new HandlerError(e);
     }
   };

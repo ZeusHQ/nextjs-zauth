@@ -70,7 +70,7 @@ export default function get(config: Config, { name, version }: Telemetry): Clien
     let issuer: Issuer<Client>;
     try {
       issuer = await Issuer.discover(config.issuerBaseURL);
-    } catch (e) {
+    } catch (e: any) {
       throw normalizeAggregateError(e);
     }
     applyHttpOptionsCustom(issuer);

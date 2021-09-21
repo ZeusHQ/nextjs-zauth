@@ -31,7 +31,7 @@ export default function handleLogoutFactory(handler: BaseHandleLogout): HandleLo
     try {
       assertReqRes(req, res);
       return await handler(req, res, options);
-    } catch (e) {
+    } catch (e: any) {
       throw new HandlerError(e);
     }
   };

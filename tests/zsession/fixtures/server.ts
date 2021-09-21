@@ -131,7 +131,7 @@ const requestListener =
             res.writeHead(404);
             res.end();
         }
-      } catch (e) {
+      } catch (e: any) {
         res.writeHead(e.statusCode || 500, e.message);
         res.end();
       }

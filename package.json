@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "browser": "dist/index.browser.js",
+  "directories": {
+    "test": "tests"
+  },
   "files": [
     "dist",
     "src"
@@ -13,25 +16,29 @@
     "node": "^10.13.0 || >=12.0.0"
   },
   "scripts": {
-    "clean": "rm -rf ./dist",
+    "clean": "rimraf dist",
     "pretty": "prettier --write \"src/**/*.{ts,tsx}\" \"src/*.ts\"",
-    "prebuild": "yarn clean",
+    "lint": "tsc --noEmit && eslint --fix --ext .ts ./src",
     "docs": "typedoc --options typedoc.js src",
-    "lint": "eslint --fix --ext .ts ./src",
+    "prepack": "npm run build",
     "install:basic": "npm i --prefix=examples/basic-example --no-package-lock",
     "install:kitchen-sink": "npm i --prefix=examples/kitchen-sink-example --no-package-lock",
-    "install:examples": "yarn install:basic && yarn install:kitchen-sink",
-    "build": "yarn clean && tsc -p tsconfig.build.json",
-    "build:basic": "npm run build --prefix=examples/basic-example",
+    "install:examples": "npm run install:basic && npm run install:kitchen-sink",
+    "build": "npm run clean && tsc -p tsconfig.build.json",
     "build:test": "next build tests/fixtures/test-app",
+    "build:basic": "npm run build --prefix=examples/basic-example",
     "build:kitchen-sink": "npm run build --prefix=examples/kitchen-sink-example",
     "build:examples": "npm run build:basic && npm run build:kitchen-sink",
+    "build:vercel": "npm run install:kitchen-sink && npm run build && npm run build:kitchen-sink",
     "start:basic": "npm run dev --prefix=examples/basic-example",
     "start:kitchen-sink": "npm run dev --prefix=examples/kitchen-sink-example",
+    "start:kitchen-sink-local": "npm run dev:local --prefix=examples/kitchen-sink-example",
     "test": "jest tests --coverage --maxWorkers=10",
     "test:watch": "jest --coverage --watch",
     "test:kitchen-sink": "start-server-and-test start:kitchen-sink http-get://localhost:3000 cypress:run",
-    "test:kitchen-sink:watch": "start-server-and-test start:kitchen-sink 3000 cypress:open"
+    "test:kitchen-sink:watch": "start-server-and-test start:kitchen-sink 3000 cypress:open",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -54,20 +61,18 @@
   "dependencies": {
     "base64url": "^3.0.1",
     "cookie": "^0.4.1",
-    "debug": "^4.3.1",
-    "futoin-hkdf": "^1.3.2",
+    "debug": "^4.3.2",
+    "futoin-hkdf": "^1.4.2",
     "http-errors": "^1.8.0",
-    "joi": "^17.4.0",
+    "joi": "^17.4.1",
     "jose": "^2.0.5",
     "on-headers": "^1.0.2",
-    "openid-client": "^4.2.3",
-    "tslib": "^2.1.0",
+    "openid-client": "^4.7.5",
+    "tslib": "^2.3.1",
     "url-join": "^4.0.1"
   },
   "peerDependencies": {
-    "next": "^11.1.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "next": ">=10"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
@@ -80,9 +85,9 @@
     "@types/http-errors": "^1.8.0",
     "@types/jest": "^27.0.1",
     "@types/jsonwebtoken": "^8.5.0",
-    "@types/node": "^16.3.2",
+    "@types/node": "^14.14.20",
     "@types/on-headers": "^1.0.0",
-    "@types/react": "^17.0.14",
+    "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
     "@types/tough-cookie": "^4.0.0",
     "@types/url-join": "^4.0.0",
@@ -90,9 +95,9 @@
     "@typescript-eslint/eslint-plugin": "^4.13.0",
     "@typescript-eslint/parser": "^4.13.0",
     "body-parser": "^1.19.0",
-    "child_process": "^1.0.2",
+    "browserstack-cypress-cli": "^1.8.1",
+    "cypress": "^8.4.0",
     "eslint": "^7.17.0",
-    "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-import-resolver-typescript": "^2.3.0",
     "eslint-plugin-import": "^2.22.1",
@@ -100,24 +105,25 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "jest": "^26.6.3",
-    "next": "^11.1.1",
+    "jest": "^27.2.0",
+    "next": "^11.1.2",
     "nock": "^13.0.5",
+    "oidc-provider": "^7.6.0",
     "prettier": "^2.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-test-renderer": "^17.0.2",
+    "react-test-renderer": "^17.0.1",
     "rimraf": "^3.0.2",
     "start-server-and-test": "^1.11.7",
     "timekeeper": "^2.2.0",
     "tough-cookie": "^4.0.0",
-    "ts-jest": "^26.4.4",
-    "typedoc": "^0.21.4",
+    "ts-jest": "^27.0.5",
+    "typedoc": "^0.20.14",
     "typescript": "^4.1.3"
   },
   "jest": {
     "testEnvironment": "node",
-    "rootDir": "./",
+    "rootDir": "tests",
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -143,9 +149,9 @@
       }
     },
     "preset": "ts-jest",
-    "globalSetup": "./tests/global-setup.ts",
+    "globalSetup": "./global-setup.ts",
     "setupFilesAfterEnv": [
-      "./tests/setup.ts"
+      "./setup.ts"
     ]
   }
 }

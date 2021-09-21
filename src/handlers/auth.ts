@@ -69,7 +69,7 @@ const wrapErrorHandling =
   async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
     try {
       await fn(req, res);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       res.status(error.status || 500).end(error.message);
     }

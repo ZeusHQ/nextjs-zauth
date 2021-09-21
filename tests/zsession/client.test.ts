@@ -100,20 +100,20 @@ describe('clientFactory', function () {
     expect(client.id_token_signed_response_alg).toEqual('RS256');
   });
 
-  // it('should create custom logout for zeus auth', async function () {
-  //   nock('https://test.zidentity.io')
-  //     .get('/.well-known/openid-configuration')
-  //     .reply(200, { ...wellKnown, issuer: 'https://test.zidentity.io/', end_session_endpoint: undefined });
-  //   nock('https://test.zidentity.io').get('/.well-known/jwks.json').reply(200, jwks);
+  it('should create custom logout for zeus auth', async function () {
+    nock('https://zeus.zidentity.io')
+      .get('/.well-known/openid-configuration')
+      .reply(200, { ...wellKnown, issuer: 'https://zeus.zidentity.io/', end_session_endpoint: undefined });
+    nock('https://zeus.zidentity.io').get('/.well-known/jwks.json').reply(200, jwks);
 
-  //   const client = await getClient({
-  //     issuerBaseURL: 'https://test.zidentity.io',
-  //     idpLogout: true
-  //   });
-  //   expect(client.endSessionUrl({ post_logout_redirect_uri: 'foo' })).toEqual(
-  //     'https://test.zidentity.io/v2/logout?returnTo=foo&client_id=__test_client_id__'
-  //   );
-  // });
+    const client = await getClient({
+      issuerBaseURL: 'https://zeus.zidentity.io',
+      idpLogout: true
+    });
+    expect(client.endSessionUrl({ post_logout_redirect_uri: 'foo' })).toEqual(
+      'https://zeus.zidentity.io/v2/logout?returnTo=foo&client_id=__test_client_id__'
+    );
+  });
 
   it('should handle limited openid-configuration', async function () {
     nock('https://op2.example.com')

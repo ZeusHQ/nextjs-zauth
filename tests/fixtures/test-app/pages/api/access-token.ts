@@ -4,7 +4,7 @@ export default async function accessTokenHandler(req: NextApiRequest, res: NextA
   try {
     const json = JSON.stringify(await (global as any).getAccessToken(req, res));
     res.status(200).json(json);
-  } catch (error) {
+  } catch (error: any) {
     res.statusMessage = error.message;
     res.status(error.status || 500).end(error.message);
   }

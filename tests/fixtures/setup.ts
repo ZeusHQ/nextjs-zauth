@@ -66,7 +66,7 @@ export const setup = async (
     async callback(req, res) {
       try {
         await handleCallback(req, res, callbackOptions);
-      } catch (error) {
+      } catch (error: any) {
         res.statusMessage = error.message;
         res.status(error.status || 500).end(error.message);
       }
@@ -74,7 +74,7 @@ export const setup = async (
     async login(req, res) {
       try {
         await handleLogin(req, res, loginOptions);
-      } catch (error) {
+      } catch (error: any) {
         res.statusMessage = error.message;
         res.status(error.status || 500).end(error.message);
       }
@@ -82,14 +82,14 @@ export const setup = async (
     async logout(req, res) {
       try {
         await handleLogout(req, res, logoutOptions);
-      } catch (error) {
+      } catch (error: any) {
         res.status(error.status || 500).end(error.message);
       }
     },
     async profile(req, res) {
       try {
         await handleProfile(req, res, profileOptions);
-      } catch (error) {
+      } catch (error: any) {
         res.statusMessage = error.message;
         res.status(error.status || 500).end(error.message);
       }

@@ -370,8 +370,8 @@ export interface NextConfig extends Pick<BaseConfig, 'identityClaimFilter'> {
  * return zidentity.handleAuth();
  * ```
  *
- * **Note** If you use {@link InitZeusIdentity}, you should *not* use the other named exports as they will use a different
- * instance of the SDK.
+ * **Note** If you use {@link InitZeusIdentity}, you should *not* use the other named exports as they
+ * will use a different instance of the SDK.
  *
  * @category Server
  */
@@ -436,7 +436,9 @@ export const getConfig = (params: ConfigParameters = {}): { baseConfig: BaseConf
   const ZIDENTITY_COOKIE_SAME_SITE = process.env.ZIDENTITY_COOKIE_SAME_SITE;
 
   const baseURL =
-    ZIDENTITY_BASE_URL && !/^https?:\/\//.test(ZIDENTITY_BASE_URL as string) ? `https://${ZIDENTITY_BASE_URL}` : ZIDENTITY_BASE_URL;
+    ZIDENTITY_BASE_URL && !/^https?:\/\//.test(ZIDENTITY_BASE_URL as string)
+      ? `https://${ZIDENTITY_BASE_URL}`
+      : ZIDENTITY_BASE_URL;
 
   const { organization, ...baseParams } = params;
 

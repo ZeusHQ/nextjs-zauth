@@ -82,7 +82,7 @@ export default function profileHandler(
       }
 
       res.json(session.user);
-    } catch (e) {
+    } catch (e: any) {
       throw new HandlerError(e);
     }
   };
