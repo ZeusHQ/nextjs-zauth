@@ -246,6 +246,7 @@ export interface AuthorizationParameters extends OidcAuthorizationParameters {
   scope: string;
   response_mode: 'query' | 'form_post';
   response_type: 'id_token' | 'code id_token' | 'code';
+  signup?: boolean;
 }
 
 export type GetLoginState = (req: any, options: LoginOptions) => { [key: string]: any };

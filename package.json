@@ -18,7 +18,11 @@
   "scripts": {
     "clean": "rimraf dist",
     "pretty": "prettier --write \"src/**/*.{ts,tsx}\" \"src/*.ts\"",
+    "pretty:basic": "prettier --write \"examples/basic-example/**/*.{ts,tsx}\" \"examples/basic-example/*.ts\"",
+    "pretty:kitchen-sink": "prettier --write \"examples/kitchen-sink-example/**/*.{ts,tsx}\" \"examples/kitchen-sink-example/*.ts\"",
     "lint": "tsc --noEmit && eslint --fix --ext .ts ./src",
+    "lint:basic": "tsc --noEmit && eslint --fix --ext .ts ./examples/basic-example",
+    "lint:kitchen-sink": "tsc --noEmit && eslint --fix --ext .ts ./examples/kitchen-sink-example",
     "docs": "typedoc --options typedoc.js src",
     "prepack": "npm run build",
     "install:basic": "npm i --prefix=examples/basic-example --no-package-lock",

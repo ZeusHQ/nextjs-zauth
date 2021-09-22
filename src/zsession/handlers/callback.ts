@@ -41,7 +41,7 @@ export default function callbackHandlerFactory(
       const code_verifier = transientCookieHandler.read('code_verifier', req, res);
       const nonce = transientCookieHandler.read('nonce', req, res);
 
-      console.log(callbackParams);
+      // console.log(callbackParams);
 
       tokenSet = await client.callback(redirectUri, callbackParams, {
         max_age: max_age !== undefined ? +max_age : undefined,

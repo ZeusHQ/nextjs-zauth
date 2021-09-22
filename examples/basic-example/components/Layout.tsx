@@ -6,7 +6,7 @@ import Header from './Header';
 const Layout = ({ children }) => (
   <>
     <Head>
-      <title>Next.js with Zeus Identity</title>
+      <title>Next.js with ZIdentity</title>
     </Head>
 
     <Header />
@@ -15,13 +15,13 @@ const Layout = ({ children }) => (
       <div className="container">{children}</div>
     </main>
 
-    <style>{`
+    <style jsx>{`
       .container {
         max-width: 42rem;
         margin: 1.5rem auto;
       }
     `}</style>
-    <style>{`
+    <style jsx global>{`
       body {
         margin: 0;
         color: #333;

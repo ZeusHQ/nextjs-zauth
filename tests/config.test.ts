@@ -6,7 +6,7 @@ const getConfigWithEnv = (env: any = {}, opts?: any): { baseConfig: BaseConfig; 
     ...process.env,
     ...{
       ZIDENTITY_SECRET: '__long_super_secret_secret__',
-      ZIDENTITY_ISSUER_BASE_URL: 'http://zeus.zidentity.local:3001',
+      ZIDENTITY_ISSUER_BASE_URL: 'http://test.zidentity.local:3001',
       ZIDENTITY_BASE_URL: 'http://localhost:3001',
       ZIDENTITY_CLIENT_ID: '__test_client_id__',
       ZIDENTITY_CLIENT_SECRET: '__test_client_secret__'
@@ -27,7 +27,7 @@ describe('config params', () => {
     const { baseConfig, nextConfig } = getConfigWithEnv();
     expect(baseConfig).toStrictEqual({
       secret: '__long_super_secret_secret__',
-      issuerBaseURL: 'http://zeus.zidentity.local:3001',
+      issuerBaseURL: 'http://test.zidentity.local:3001',
       baseURL: 'http://localhost:3001',
       clientID: '__test_client_id__',
       clientSecret: '__test_client_secret__',

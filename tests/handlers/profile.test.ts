@@ -92,7 +92,7 @@ describe('profile handler', () => {
     nock(`${withoutApi.issuerBaseURL}`)
       .post('/oauth/token', `grant_type=refresh_token&refresh_token=GEbRxBN...edjnXbL`)
       .reply(200, {
-        id_token: makeIdToken({ iss: 'https://acme.zidentity.local/' }),
+        id_token: makeIdToken({ iss: 'https://test.zidentity.io/' }),
         token_type: 'Bearer',
         expires_in: 750,
         scope: 'read:foo write:foo'
@@ -156,6 +156,9 @@ describe('profile handler', () => {
 
   test('should escape html in errors', async () => {
     const baseUrl = await setup(withoutApi);
+    console.log("base url")
+    console.log(baseUrl);
+    console.log(withoutApi);
 
     const res = await fetch(`${baseUrl}/api/auth/me?error=%3Cscript%3Ealert(%27xss%27)%3C%2Fscript%3E`);
 

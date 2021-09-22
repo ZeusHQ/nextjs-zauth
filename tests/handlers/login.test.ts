@@ -61,13 +61,13 @@ describe('login handler', () => {
     const { value: state } = getCookie('state', cookieJar, baseUrl) as Cookie;
     expect(urlParse(headers.location, true)).toMatchObject({
       protocol: 'https:',
-      host: 'acme.zidentity.local',
+      host: 'test.zidentity.io',
       hash: null,
       query: {
         client_id: '__test_client_id__',
         scope: 'openid profile email',
         response_type: 'code',
-        redirect_uri: 'http://www.acme.com/api/auth/callback',
+        redirect_uri: 'http://www.test.com/api/auth/callback',
         nonce: expect.any(String),
         state: state.split('.')[0],
         code_challenge: expect.any(String),
@@ -81,7 +81,7 @@ describe('login handler', () => {
     const loginOptions = {
       authorizationParams: {
         max_age: 123,
-        login_hint: 'foo@acme.com',
+        login_hint: 'foo@test.com',
         ui_locales: 'nl',
         scope: 'some other scope openid',
         foo: 'bar',
@@ -154,7 +154,7 @@ describe('login handler', () => {
     const decodedState = decodeState(state.split('.')[0]);
     expect(decodedState).toEqual({
       foo: 'bar',
-      returnTo: 'http://www.acme.com/'
+      returnTo: 'http://www.test.com/'
     });
   });
 
@@ -282,7 +282,7 @@ describe('login handler', () => {
 
     expect(urlParse(headers.location, true).query).toMatchObject({
       scope: 'openid profile read:customer',
-      audience: 'https://api.acme.com'
+      audience: 'https://api.test.com'
     });
   });
 });

@@ -39,6 +39,10 @@ export default function withApiAuthFactory(sessionCache: SessionCache): WithApiA
         return;
       }
 
+      if ((res as any).locals === undefined) (res as any).locals = {};
+      (res as any).locals.session = session;
+      (res as any).locals.user = session.user;
+
       await apiRoute(req, res);
     };
 }

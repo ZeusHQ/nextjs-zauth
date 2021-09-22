@@ -158,8 +158,8 @@ export const setup = async (
   if (!nock.isActive()) {
     nock.activate();
   }
-  nock('https://op.example.com').get('/.well-known/openid-configuration').reply(200, wellKnown);
 
+  nock('https://op.example.com').get('/.well-known/openid-configuration').reply(200, wellKnown);
   nock('https://op.example.com').get('/.well-known/jwks.json').reply(200, jwks);
 
   nock('http://test.zidentity.local:3001')

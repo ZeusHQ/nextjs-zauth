@@ -49,7 +49,7 @@ export const setup = async (
 ): Promise<string> => {
   discovery(config, discoveryOptions);
   jwksEndpoint(config, jwks);
-  codeExchange(config, makeIdToken({ iss: 'https://acme.zidentity.local/', ...idTokenClaims }));
+  codeExchange(config, makeIdToken({ iss: 'https://test.zidentity.io/', ...idTokenClaims }));
   userInfo(config, userInfoToken, userInfoPayload);
   const {
     handleAuth,

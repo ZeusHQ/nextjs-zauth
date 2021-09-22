@@ -74,6 +74,11 @@ export interface AuthorizationParams extends Partial<AuthorizationParameters> {
    * organizations, it should match {@Link CallbackOptions.organization}.
    */
   organization?: string;
+
+  /**
+   *  Redirect to signup route instead of login
+   */
+  signup?: boolean;
 }
 
 /**

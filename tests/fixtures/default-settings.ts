@@ -1,10 +1,10 @@
 import { ConfigParameters } from '../../src';
 
 export const withoutApi: ConfigParameters = {
-  issuerBaseURL: 'https://acme.zidentity.local',
+  issuerBaseURL: 'https://test.zidentity.io',
   clientID: '__test_client_id__',
   clientSecret: 'client_secret',
-  baseURL: 'http://www.acme.com/',
+  baseURL: 'http://www.test.com/',
   secret: '__test_session_secret__',
   routes: {
     callback: '/api/auth/callback'
@@ -15,14 +15,14 @@ export const withoutApi: ConfigParameters = {
  * Default settings which include an audience.
  */
 export const withApi: ConfigParameters = {
-  issuerBaseURL: 'https://acme.zidentity.local',
+  issuerBaseURL: 'https://test.zidentity.io',
   clientID: '__test_client_id__',
   clientSecret: 'client_secret',
-  baseURL: 'http://www.acme.com/',
+  baseURL: 'http://www.test.com/',
   secret: '__test_session_secret__',
   authorizationParams: {
     scope: 'openid profile read:customer',
-    audience: 'https://api.acme.com'
+    audience: 'https://api.test.com'
   },
   routes: {
     callback: '/api/auth/callback'

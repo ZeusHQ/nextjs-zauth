@@ -3,60 +3,60 @@ import Link from 'next/link';
 import { useUser } from '@zeushq/nextjs-zidentity';
 
 const Header = (): React.ReactElement => {
-    const { user } = useUser();
+  const { user } = useUser();
 
-    return (
-        <header>
-            <nav>
-                <ul>
-                    <li>
-                        <Link href="/">
-                            <a>Home</a>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/about">
-                            <a>About</a>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/shows">
-                            <a>TV Shows</a>
-                        </Link>
-                    </li>
-                    {user ? (
-                        <>
-                            <li>
-                                <Link href="/profile">
-                                    <a>Profile</a>
-                                </Link>
-                            </li>{' '}
-                            <li>
-                                <a href="/profile-ssr">Profile (SSR)</a>
-                            </li>{' '}
-                            <li>
-                                <a href="/api/auth/logout" data-testid="logout">
-                                    Logout
-                                </a>
-                            </li>
-                        </>
-                    ) : (
-                        <>
-                            <li>
-                                <a href="/api/auth/login" data-testid="login">
-                                    Login
-                                </a>
-                            </li>
-                        </>
-                    )}
-                </ul>
-            </nav>
+  return (
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <Link href="/">
+              <a>Home</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/about">
+              <a>About</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/shows">
+              <a>TV Shows</a>
+            </Link>
+          </li>
+          {user ? (
+            <>
+              <li>
+                <Link href="/profile">
+                  <a>Profile</a>
+                </Link>
+              </li>{' '}
+              <li>
+                <a href="/profile-ssr">Profile (SSR)</a>
+              </li>{' '}
+              <li>
+                <a href="/api/auth/logout" data-testid="logout">
+                  Logout
+                </a>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <a href="/api/auth/login" data-testid="login">
+                  Login
+                </a>
+              </li>
+            </>
+          )}
+        </ul>
+      </nav>
 
-            <style jsx>{`
+      <style jsx>{`
         header {
           padding: 0.2rem;
           color: #fff;
-          background-color: #121212;
+          background-color: #333;
         }
         nav {
           max-width: 42rem;
@@ -86,8 +86,8 @@ const Header = (): React.ReactElement => {
           background: none;
         }
       `}</style>
-        </header>
-    );
+    </header>
+  );
 };
 
 export default Header;

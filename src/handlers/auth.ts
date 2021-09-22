@@ -66,14 +66,14 @@ export type HandleAuth = (userHandlers?: Partial<Handlers>) => NextApiHandler;
  */
 const wrapErrorHandling =
   (fn: NextApiHandler): NextApiHandler =>
-  async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-    try {
-      await fn(req, res);
-    } catch (error: any) {
-      console.error(error);
-      res.status(error.status || 500).end(error.message);
-    }
-  };
+    async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
+      try {
+        await fn(req, res);
+      } catch (error: any) {
+        console.error(error);
+        res.status(error.status || 500).end(error.message);
+      }
+    };
 
 /**
  * @ignore
@@ -107,6 +107,8 @@ export default function handlerFactory({
       switch (route) {
         case 'login':
           return login(req, res);
+        case 'signup':
+          return login(req, res, { authorizationParams: { signup: true } });
         case 'logout':
           return logout(req, res);
         case 'callback':

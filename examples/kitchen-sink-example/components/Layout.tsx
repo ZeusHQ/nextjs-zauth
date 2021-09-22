@@ -6,7 +6,7 @@ import Header from './Header';
 const Layout = ({ children }: React.PropsWithChildren<unknown>): React.ReactElement => (
   <>
     <Head>
-      <title>Next.js with Zeus Identity</title>
+      <title>Next.js with ZIdentity</title>
     </Head>
 
     <Header />

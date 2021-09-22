@@ -1,3 +1,3 @@
-import { handleAuth } from "@zeushq/nextjs-zidentity";
+import { handleAuth } from '@zeushq/nextjs-zidentity';
 
 export default handleAuth();

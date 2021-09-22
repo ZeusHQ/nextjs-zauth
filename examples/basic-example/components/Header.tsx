@@ -1,50 +1,54 @@
 import React from 'react';
 import Link from 'next/link';
-// import { useUser } from '@zeushq/nextjs-zidentity';
+import { useUser } from '@zeushq/nextjs-zidentity';
 
 const Header = () => {
-    // const { user } = useUser();
-    const user = null;
+  const { user } = useUser();
 
-    return (
-        <header>
-            <nav>
-                <ul>
-                    <li>
-                        <Link href="/">
-                            <a>Home</a>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/protected-page">
-                            <a>Protected Page</a>
-                        </Link>
-                    </li>
-                    {user ? (
-                        <>
-                            <li>
-                                <a href="/api/auth/logout" data-testid="logout">
-                                    Logout
-                                </a>
-                            </li>
-                        </>
-                    ) : (
-                        <>
-                            <li>
-                                <a href="/api/auth/login" data-testid="login">
-                                    Login
-                                </a>
-                            </li>
-                        </>
-                    )}
-                </ul>
-            </nav>
+  return (
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <Link href="/">
+              <a>Home</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/protected-page">
+              <a>Protected Page</a>
+            </Link>
+          </li>
+          {user ? (
+            <>
+              <li>
+                <a href="/api/auth/logout" data-testid="logout">
+                  Logout
+                </a>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <a href="/api/auth/login" data-testid="login">
+                  Login
+                </a>
+              </li>
+              <li>
+                <a href="/api/auth/signup" data-testid="signup">
+                  Signup
+                </a>
+              </li>
+            </>
+          )}
+        </ul>
+      </nav>
 
-            <style>{`
+      <style jsx>{`
         header {
           padding: 0.2rem;
           color: #fff;
-          background-color: #121212;
+          background-color: #333;
         }
         nav {
           max-width: 42rem;
@@ -74,8 +78,8 @@ const Header = () => {
           background: none;
         }
       `}</style>
-        </header>
-    );
+    </header>
+  );
 };
 
 export default Header;

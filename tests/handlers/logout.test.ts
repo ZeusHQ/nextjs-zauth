@@ -30,9 +30,9 @@ describe('logout handler', () => {
     expect(status).toBe(302);
     expect(parseUrl(headers.get('location') as string, true)).toMatchObject({
       protocol: 'https:',
-      host: 'acme.zidentity.local',
+      host: 'test.zidentity.io',
       query: {
-        returnTo: 'http://www.acme.com',
+        returnTo: 'http://www.test.com',
         client_id: '__test_client_id__'
       },
       pathname: '/v2/logout'

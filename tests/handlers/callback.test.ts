@@ -86,7 +86,7 @@ describe('callback handler', () => {
         },
         cookieJar
       )
-    ).rejects.toThrow('unexpected iss value, expected https://acme.zidentity.local/, got: other-issuer');
+    ).rejects.toThrow('unexpected iss value, expected https://test.zidentity.io/, got: other-issuer');
   });
 
   it('should escape html in error qp', async () => {
@@ -176,7 +176,7 @@ describe('callback handler', () => {
       accessToken: 'eyJz93a...k4laUWw',
       accessTokenExpiresAt: 750,
       accessTokenScope: 'read:foo delete:foo',
-      idToken: makeIdToken({ iss: 'https://acme.zidentity.local/' }),
+      idToken: makeIdToken({ iss: 'https://test.zidentity.io/' }),
       token_type: 'Bearer',
       refreshToken: 'GEbRxBN...edjnXbL',
       user: {
@@ -217,7 +217,7 @@ describe('callback handler', () => {
     expect(session).toStrictEqual({
       accessTokenExpiresAt: 750,
       accessTokenScope: 'read:foo delete:foo',
-      idToken: makeIdToken({ iss: 'https://acme.zidentity.local/' }),
+      idToken: makeIdToken({ iss: 'https://test.zidentity.io/' }),
       token_type: 'Bearer',
       user: {
         nickname: '__test_nickname__',
