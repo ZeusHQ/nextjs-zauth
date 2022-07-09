@@ -24,6 +24,9 @@ const instance: SignInWithZeusAuth = {
   withApiAuthRequired() {
     throw new Error(serverSideOnly('withApiAuthRequired'));
   },
+  withApiAuthOptional() {
+    throw new Error(serverSideOnly('withApiAuthOptional'));
+  },
   handleLogin() {
     throw new Error(serverSideOnly('handleLogin'));
   },

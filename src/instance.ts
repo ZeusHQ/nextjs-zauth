@@ -1,5 +1,5 @@
 import { GetSession, GetAccessToken } from './session';
-import { WithApiAuthRequired, WithPageAuthRequired } from './helpers';
+import { WithApiAuthOptional, WithApiAuthRequired, WithPageAuthRequired } from './helpers';
 import { HandleAuth, HandleCallback, HandleLogin, HandleLogout, HandleProfile } from './handlers';
 import { ConfigParameters } from './zsession';
 
@@ -47,6 +47,11 @@ export interface SignInWithZeusAuth {
    * Helper that adds auth to an API Route
    */
   withApiAuthRequired: WithApiAuthRequired;
+
+  /**
+   * Helper that adds auth to an API Route
+   */
+  withApiAuthOptional: WithApiAuthOptional;
 
   /**
    * Helper that adds auth to a Page Route

@@ -41,6 +41,8 @@ import {
   withPageAuthRequiredFactory,
   withApiAuthRequiredFactory,
   WithApiAuthRequired,
+  withApiAuthOptionalFactory,
+  WithApiAuthOptional,
   WithPageAuthRequired,
   GetServerSidePropsResultWithSession,
   WithPageAuthRequiredOptions,
@@ -76,6 +78,7 @@ export const initZeusIdentity: InitZeusIdentity = (params) => {
   const getSession = sessionFactory(sessionCache);
   const getAccessToken = accessTokenFactory(nextConfig, getClient, sessionCache);
   const withApiAuthRequired = withApiAuthRequiredFactory(sessionCache);
+  const withApiAuthOptional = withApiAuthOptionalFactory(sessionCache);
   const withPageAuthRequired = withPageAuthRequiredFactory(nextConfig.routes.login, getSession);
   const handleLogin = loginHandler(baseHandleLogin, nextConfig);
   const handleLogout = logoutHandler(baseHandleLogout);
@@ -87,6 +90,7 @@ export const initZeusIdentity: InitZeusIdentity = (params) => {
     getSession,
     getAccessToken,
     withApiAuthRequired,
+    withApiAuthOptional,
     withPageAuthRequired,
     handleLogin,
     handleLogout,
@@ -99,6 +103,7 @@ export const initZeusIdentity: InitZeusIdentity = (params) => {
 export const getSession: GetSession = (...args) => getInstance().getSession(...args);
 export const getAccessToken: GetAccessToken = (...args) => getInstance().getAccessToken(...args);
 export const withApiAuthRequired: WithApiAuthRequired = (...args) => getInstance().withApiAuthRequired(...args);
+export const withApiAuthOptional: WithApiAuthOptional = (...args) => getInstance().withApiAuthOptional(...args);
 export const withPageAuthRequired: WithPageAuthRequired = withPageAuthRequiredFactory(getLoginUrl(), getSession);
 export const handleLogin: HandleLogin = (...args) => getInstance().handleLogin(...args);
 export const handleLogout: HandleLogout = (...args) => getInstance().handleLogout(...args);
@@ -128,6 +133,7 @@ export {
   WithPageAuthRequiredOptions,
   PageRoute,
   WithApiAuthRequired,
+  WithApiAuthOptional,
   WithPageAuthRequired,
   SessionCache,
   GetSession,
