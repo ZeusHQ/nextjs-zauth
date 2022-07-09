@@ -28,7 +28,7 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "@zeushq/nextjs-zidentity": "file:../../",
+    "@zeushq/nextjs-zidentity": "file:../..",
     "next": "file:../../node_modules/next",
     "react": "file:../../node_modules/react",
     "react-dom": "file:../../node_modules/react-dom"
