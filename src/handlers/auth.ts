@@ -106,15 +106,15 @@ export default function handlerFactory({
 
       switch (route) {
         case 'login':
-          return login(req, res);
+          return login(req, res) as any;
         case 'signup':
-          return login(req, res, { authorizationParams: { signup: true } });
+          return login(req, res, { authorizationParams: { signup: true } }) as any;
         case 'logout':
-          return logout(req, res);
+          return logout(req, res) as any;
         case 'callback':
-          return callback(req, res);
+          return callback(req, res) as any;
         case 'me':
-          return profile(req, res);
+          return profile(req, res) as any;
         default:
           res.status(404).end();
       }
