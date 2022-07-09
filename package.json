@@ -1,7 +1,7 @@
 {
   "name": "@zeushq/nextjs-zidentity",
   "description": "Next.js SDK for signin in with Zeus Identity",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "browser": "dist/index.browser.js",
